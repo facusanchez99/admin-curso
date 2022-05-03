@@ -1,0 +1,14 @@
+a{
+    text-decoration: none;
+}
+
+footer{
+    background-color: rgb(11, 144, 253);
+    padding: 10px 15px;
+}
+
+.list-footer{
+    color: black;
+    list-style: none;
+    text-align: center;
+}

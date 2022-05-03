@@ -1,0 +1,21 @@
+.father{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: .2fr 1fr;
+    grid-template-areas: "header header" "navbar main" "footer footer";
+}
+
+app-header{
+    grid-area: header;
+}
+
+app-footer{
+    grid-area: footer;
+}
+
+main{
+    grid-area: main;
+}
+app-menu{
+    grid-area: navbar;
+}

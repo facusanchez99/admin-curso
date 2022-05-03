@@ -1,0 +1,26 @@
+header{
+    background-color: rgb(11, 144, 253);
+}
+.navbar-header{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.aside-menu-bars{
+    display: flex;
+    flex: 10 1 auto;
+    align-items: center;
+    flex-flow: nowrap;
+}
+
+.navbar-user{
+    flex: 1 1 auto;
+}
+
+.navbar-menu{
+  color: black;
+}
+
+.navbar-menu i{
+    font-size: 25px;
+}
