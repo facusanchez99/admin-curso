@@ -1,0 +1,27 @@
+<div>
+    <div>
+        <h3>{{titulo}}</h3>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let a of alumnos" ngClass="{{(a.aprobado != null ? (a.aprobado == true ? 'aprobado' : 'desaprobado') : null)}}">
+                    <td>{{a.id}}</td>
+                    <td> <!--<img src="{{a.foto}}" alt="">--></td> 
+                    <td>{{a.nombre}}</td>
+                    <td>{{a.apellido}}</td>
+                    <td>{{a.email}}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    
+</div>

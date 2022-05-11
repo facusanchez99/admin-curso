@@ -9,6 +9,7 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { AdminComponent } from './components/users/admin/admin.component';
 import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/layout/menu/menu.component';
+import { TablaHomeComponent } from './components/tabla-home/tabla-home.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MenuComponent } from './components/layout/menu/menu.component';
     AdminComponent,
     LoginComponent,
     MenuComponent,
+    TablaHomeComponent,
   ],
   imports: [
     BrowserModule,
