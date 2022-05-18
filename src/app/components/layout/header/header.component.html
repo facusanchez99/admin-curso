@@ -1,14 +1,38 @@
 <header>
-    <nav class="navbar-header">
-      <div class="aside-menu-bars">
-        <a class="navbar-menu" (click)="openMenu()"><i class="fas fa-bars"></i></a>
-        <i class="fa-solid fa-building-columns"></i>
-      </div>
-      <div class="navbar-user">
-        <ul class="navbar-nav">
-          <li>User (rigth)</li>
+  <nav class="navbar-header">
+    <div class="aside-menu-bars">
+      <button class="btn-menu" (click)="openMenu()"><i class="fas fa-bars"></i></button>
+      <i class="fa-solid fa-building-columns"></i>
+    </div>
+    <div class="navbar-user">
+      <ul class="navbar-nav">
+        <li>User (rigth)</li>
+      </ul>
+    </div>
+  </nav>
+  <div [ngClass]="{'background-menu': viewMenu}">
+    <div class="navbar-menu" [ngClass]="{'navbar-menu-show': viewMenu}">
+      <nav>
+        <ul class="menu-items-show">
+          <li><i class="fas fa-house-user"></i> Home</li>
+          <li><i class="fas fa-graduation-cap"></i> Students</li>
+          <li><i class="fas fa-school"></i> Courses</li>
+          <li><i class="fas fa-address-book"></i> Contact</li>
         </ul>
-      </div>
-    </nav>
+      </nav>
+    </div>
+  </div>
 </header>
 
+
+
+<!-- <div class="navbar-menu" [ngClass]="{'navbar-menu-show': viewMenu}">
+    <nav>
+      <ul class="menu-items-show">
+          <li><i class="fas fa-house-user"></i> Home</li>
+          <li><i class="fas fa-graduation-cap"></i> Students</li>
+          <li><i class="fas fa-school"></i> Courses</li>
+          <li><i class="fas fa-address-book"></i> Contact</li>
+      </ul>
+  </nav>
+</div> -->

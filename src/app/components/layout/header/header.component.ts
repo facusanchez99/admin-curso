@@ -6,14 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  public viewMenu:boolean = false;
   constructor() { }
 
   ngOnInit(): void {
   }
   
   openMenu(){
-
+    this.viewMenu = this.viewMenu ? false : true;
+    console.log(this.viewMenu);
+    // if(this.viewMenu){
+    //   this.viewMenu = false;
+    // }else{
+    //   this.viewMenu = true;
+    // }
   }
 
 }

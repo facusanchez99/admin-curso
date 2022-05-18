@@ -1,9 +1,7 @@
 import { Persona } from "./Persona";
 
-export class Alumno extends Persona{
-
-    aprobado:boolean;
-
+export class Profesor extends Persona{
+    
     constructor(
         id:number,
         nombre:string,

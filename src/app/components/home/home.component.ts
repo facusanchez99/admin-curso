@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Persona } from 'src/app/interfaces/Alumno';
+import { Alumno } from 'src/app/interfaces/Alumno';
+import { Curso } from 'src/app/interfaces/Curso';
+import { Profesor } from 'src/app/interfaces/Profesor';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   public parrafo = 'esto es un parrafo en minuscula que se va a transformar en mayuscula a traves de pipe'
   public isMayus = true;
-  public alumnos:Persona[] = [
+  public alumnos:Alumno[] = [
     {id:1,nombre:"Alumno 1",apellido:"Alumno 1",email:"email",foto:"foto", aprobado:true},
     {id:2,nombre:"Alumno 2",apellido:"Alumno 2",email:"email",foto:"foto", aprobado:false},
     {id:3,nombre:"Alumno 3",apellido:"Alumno 3",email:"email",foto:"foto", aprobado:false},
@@ -21,9 +23,16 @@ export class HomeComponent implements OnInit {
     {id:8,nombre:"Alumno 8",apellido:"Alumno 8",email:"email",foto:"foto", aprobado:undefined},
   ];
   
+  public profesor = new Profesor(1,"Facundo","Sanchez","facuujos@gmail.com",null);
+  
+  public cursos:Curso[]=[
+    {id:1,curso:"Programacion",profesor:this.profesor,alumnos:this.alumnos}
+  ]
+  
   constructor() { }
 
   ngOnInit(): void {
+
   }
   cambiarStyle(){
     return this.isMayus = this.isMayus ? false : true;
