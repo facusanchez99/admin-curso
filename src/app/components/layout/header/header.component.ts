@@ -14,12 +14,6 @@ export class HeaderComponent implements OnInit {
   
   openMenu(){
     this.viewMenu = this.viewMenu ? false : true;
-    console.log(this.viewMenu);
-    // if(this.viewMenu){
-    //   this.viewMenu = false;
-    // }else{
-    //   this.viewMenu = true;
-    // }
   }
 
 }

@@ -20,8 +20,9 @@ export class FormAlumnoComponent implements OnInit {
       name: [null, [Validators.required]],
       surname:[null,[Validators.required]],
       email: [null, [Validators.required,Validators.email]],
+      courses:[null,[Validators.required]]
     })
-    console.log(this.formAlumno.get('name'))
+    // console.log(this.formAlumno.get('name'))
   }
   submit(){
     if(!this.formAlumno.invalid){
@@ -29,7 +30,7 @@ export class FormAlumnoComponent implements OnInit {
     }else{
       
     }
-    console.log(this.formAlumno.value);
+    // console.log(this.formAlumno.value);
   }
 
 }

@@ -41,7 +41,8 @@ header{
     list-style: none;
 }
 .menu-items-show{
-    background-color: rgb(11, 144, 253);
+    background-color: rgba(255, 255, 255,1);
+    border: 1px solid rgba(0, 0, 0, 0.5);
     position: fixed;
     height:100%;
     width: 15%;

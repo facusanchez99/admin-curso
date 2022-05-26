@@ -1,113 +1,65 @@
-<div class="content-table m-5 col-lg-10" *ngIf="!viewDetalle">
+<div class="content-table">
     <div class="title-header">
         <h1>Table</h1>
     </div>
+    <mat-tab-group mat-align-tabs="start" *ngIf="student">
+        <mat-tab label="Students">
+            <table class="table table-hover table-bordered" >
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let a of student"
+                        ngClass="{{(a.aprobado != null ? (a.aprobado == true ? 'aprobado' : 'desaprobado') : null)}}">
+                        <th scope="row">{{a.id}}</th>
+                        <td>Foto</td>
+                        <td>{{a.name}}</td>
+                        <td>{{a.surname}}</td>
+                        <td>{{a.email}}</td>
+                        <td><button class="btn btn-primary" (click)="submitModalStudent(a.id)">View</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-tab>
+        <mat-tab label="Add Students">
+            <app-form-alumno></app-form-alumno>
+        </mat-tab>
+      </mat-tab-group>
     
-    <table class="table table-hover table-bordered" *ngIf="alumno">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">#ID</th>
-                <th scope="col">Foto</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Email</th>
-                <th scope="col">Curso</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let a of alumno"
-                ngClass="{{(a.aprobado != null ? (a.aprobado == true ? 'aprobado' : 'desaprobado') : null)}}">
-                <th scope="row">{{a.id}}</th>
-                <td>Foto</td>
-                <td>{{a.nombre}}</td>
-                <td>{{a.apellido}}</td>
-                <td>{{a.email}}</td>
-                <td>Curso</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <table class="table table-hover table-bordered" *ngIf="curso">
-        <thead class="thead-dark ">
-            <tr>
-                <th scope="col">#ID</th>
-                <th scope="col">Curso</th>
-                <th scope="col">Profesor</th>
-                <th scope="col">Detalles</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let a of curso">
-                <th scope="row">{{a.id}}</th>
-                <td>{{a.curso}}</td>
-                <td>{{a?.profesor?.nombre}} {{a?.profesor?.apellido}}</td>
-                <td><button class="btn btn-primary" (click)="abrirModal(a)">Detalle</button></td>
-            </tr>
-        </tbody>
-    </table>
+    <mat-tab-group mat-align-tabs="start" *ngIf="course">
+        <!-- esta tabla seria detalles solamente del curso. -->
+        <mat-tab label="Courses">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark ">
+                    <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Course</th>
+                        <th scope="col">Teachers</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{course.id}}</th>
+                        <td>{{course.course}}</td>
+                        <td><span *ngFor="let t of course.teachers">{{t.name}} {{t.surname}} </span></td>
+                        <td><button class="btn btn-primary" (click)="submitModalTable(course)">View</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-tab>
+        <!-- <mat-tab label="Add Courses">
+            <button class="" (click)="addNewCourse()">send</button>
+        </mat-tab> -->
+    </mat-tab-group>
+    
 </div>
 
-<!-- Modal -->
-<div class="m-5 col-lg-10 animacion fadeIn" *ngIf="viewDetalle">
-    <div class="modal-view" *ngIf="viewDetalle">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">{{detalle?.curso}}</h4>
-            </div>
-            <div class="modal-body">
-                <div class="m-5 col-lg-10">
-                    <h5>Informacion del profesor.</h5>
-                    <table class="table table-hover table-bordered ">
-                        <thead>
-                            <tr>
-                                <th scope="col">#ID</th>
-                                <th scope="col">Foto</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">{{detalle.profesor.id}}</th>
-                                <td>Foto</td>
-                                <td>{{detalle.profesor.nombre}}</td>
-                                <td>{{detalle.profesor.apellido}}</td>
-                                <td>{{detalle.profesor.email}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="m-5 col-lg-10">
-                    <h5>Informacion de los estudiantes del curso.</h5>
-                    <table class="table table-hover table-bordered table-scrool">
-                        <thead>
-                            <tr>
-                                <th scope="col">#ID</th>
-                                <th scope="col">Foto</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Curso</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let a of detalle?.alumnos"
-                                ngClass="{{(a.aprobado != null ? (a.aprobado == true ? 'aprobado' : 'desaprobado') : null)}}">
-                                <th scope="row">{{a.id}}</th>
-                                <td>Foto</td>
-                                <td>{{a.nombre}}</td>
-                                <td>{{a.apellido}}</td>
-                                <td>{{a.email}}</td>
-                                <td>Curso</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+  

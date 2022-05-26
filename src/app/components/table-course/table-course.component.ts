@@ -6,34 +6,28 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { FormBuilder, Validators } from '@angular/forms';
 import { map, Observable } from 'rxjs';
-import { ModalCourseComponent } from '../table-course/modal-course/modal-course.component';
-import { ModalStudentComponent } from './modal-student/modal-student.component';
-import { StudentService } from 'src/app/service/student.service';
+import { ModalCourseComponent } from './modal-course/modal-course.component';
 import { CourseService } from 'src/app/service/course.service';
+// import { ModalCourseComponent } from './modal-course/modal-course.component';
+// import { ModalStudentComponent } from './modal-student/modal-student.component';
 
 @Component({
-  selector: 'app-tabla-home',
-  templateUrl: './tabla-home.component.html',
-  styleUrls: ['./tabla-home.component.css']
+  selector: 'app-table-course',
+  templateUrl: './table-course.component.html',
+  styleUrls: ['./table-course.component.css']
 })
+export class TableCourseComponent implements OnInit {
 
-export class TablaHomeComponent implements OnInit {
-  // @Input() student: Student[];
-  // @Input() course: Course[];
-  @Input() titulo: string;
+
 
   @Output() addCourse = new EventEmitter<Course>();
-  @Output() addStudent = new EventEmitter<Student>();
   
-  public detalle: Course;
-  public student:Student[];
-  public course:Course;
+  public course: Course[] = []
 
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
     public breakpointObserver: BreakpointObserver,
-    private studentService:StudentService,
     private coursesService:CourseService
   ) {
     this.stepperOrientation = breakpointObserver
@@ -53,49 +47,55 @@ export class TablaHomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-    //obtener alumnos globales //no se usa xasas
-    // this.studentService.getStudents().subscribe(student=>{
-    //   this.student = student;
-    // })
-    this.coursesService.getCoursesID(1).subscribe(course =>{
+    this.coursesService.getCourses().subscribe(course =>{
       this.course = course;
-      this.student = this.course.students 
       console.log(this.course)
     })
-    //obtener alumnos de un curso
-    // this.studentService.getStudentsCourseID(1).subscribe(student=>{
-    //   this.student = student;
-    // })
   }
 
-  addNewCourse(){
+  addNewCourse(id: number):void{
     // let course2 = new Course(2, "Programacion 3", [],  [] );
     // this.addCourse.emit(course2);
   }
 
-  submitModalTable(course: Course) {
+  editCourse(id: number):void{
+
+  }
+  
+  delteCourse(course:Course):void{
+    this.coursesService.deleteCourse(course).subscribe();
+  }
+
+  submitModalTable(id: number):void {
+    const result = this.course.find(c => c.id === id);
     this.dialog.open(ModalCourseComponent, {
       data: {
-        id: course.id,
-        course: course.course,
-        teachers: course.teachers,
-        students: course.students
+        id: result.id,
+        course: result.course,
+        teachers: result.teachers,
+        students: result.students
       }
     })
   }
   
-  submitModalStudent(id: number) {
-    const result = this.student.find(c => c.id === id);
-    this.dialog.open(ModalStudentComponent, {
-      data: {
-        id: result.id,
-        name: result.name,
-        surname: result.surname,
-        email: result.email,
-        photo: result.photo,
-        courses: result.courses
-      }
-    })
+  submitModalStudent(id: number):void {
+    // const result = this.student.find(c => c.id === id);
+    // this.dialog.open(ModalStudentComponent, {
+    //   data: {
+    //     id: result.id,
+    //     name: result.name,
+    //     surname: result.surname,
+    //     email: result.email,
+    //     photo: result.photo,
+    //     courses: result.courses
+    //   }
+    // })
+    // id:number,
+    // name:string,
+    // surname:string,
+    // email:string,
+    // photo:string,
+    // courses:Curso[]
   }
 
   getErrorMessage(control: any) {
@@ -104,6 +104,5 @@ export class TablaHomeComponent implements OnInit {
     }
     return "Campo invalido";
   }
-
 
 }

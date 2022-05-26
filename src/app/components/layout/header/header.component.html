@@ -14,10 +14,10 @@
     <div class="navbar-menu" [ngClass]="{'navbar-menu-show': viewMenu}">
       <nav>
         <ul class="menu-items-show">
-          <li><i class="fas fa-house-user"></i> Home</li>
-          <li><i class="fas fa-graduation-cap"></i> Students</li>
-          <li><i class="fas fa-school"></i> Courses</li>
-          <li><i class="fas fa-address-book"></i> Contact</li>
+          <li [routerLink]="['/home']" (click)="openMenu()"><i class="fas fa-house-user"></i> Home</li>
+          <li [routerLink]="['/students']" (click)="openMenu()"><i class="fas fa-graduation-cap"></i> Students</li>
+          <li [routerLink]="['/courses']" (click)="openMenu()"><i class="fas fa-school"></i> Courses</li>
+          <li [routerLink]="['/home']" (click)="openMenu()"><i class="fas fa-address-book"></i> Contact</li>
         </ul>
       </nav>
     </div>

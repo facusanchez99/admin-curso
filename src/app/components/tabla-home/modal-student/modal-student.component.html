@@ -1,0 +1,89 @@
+<h1 mat-dialog-title>Student: {{student?.name}} {{student?.surname}}</h1>
+<div mat-dialog-content class="mat-typography">
+    <!-- <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Cursos</h4>
+    </div> -->
+    <div class="modal-body">
+        <div class="m-5 col-lg-10">
+            <table class="table table-hover table-bordered ">
+                <thead class="thead-dark ">
+                    <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tbody>
+                        <tr>
+                            <th scope="row">{{student.id}}</th>
+                            <td>{{student.name}}</td>
+                            <td>{{student.surname}}</td>
+                            <td>{{student.email}}</td>
+                            <td><button class="btn btn-warning">Edit</button></td>
+                            <td><button class="btn btn-danger" (click)="deleteStudent(student)">Delete</button></td>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+        <div class="modal-body">
+            <div class="m-5 col-lg-10">
+                <h5>Informacion de los cursos de {{student.name}} {{student.surname}}.</h5>
+                <table class="table table-hover table-bordered ">
+                    <thead class="thead-dark ">
+                        <tr>
+                            <th scope="col">#ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Open</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tbody>
+                            <tr *ngFor="let a of student?.courses">
+                                <th scope="row">{{a.id}}</th>
+                                <td>{{a.course}}</td>
+                                <td><button class="btn btn-success">Open</button></td>
+                                <td><button class="btn btn-danger" (click)="deleteCourses(a)">Delete</button></td>
+                            </tr>
+                        </tbody>
+                </table>
+            </div>
+        <!-- <div class="m-5 col-lg-10">
+            <h5>Informacion de los estudiantes del curso.</h5>
+            <table class="table table-hover table-bordered table-scrool">
+                <thead class="thead-dark ">
+                    <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let a of course?.students"
+                        ngClass="{{(a.aprobado != null ? (a.aprobado == true ? 'aprobado' : 'desaprobado') : null)}}">
+                        <th scope="row">{{a.id}}</th>
+                        <td>Foto</td>
+                        <td>{{a.name}}</td>
+                        <td>{{a.surname}}</td>
+                        <td>{{a.email}}</td>
+                        <td><button class="btn btn-danger">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> -->
+    </div>
+    <div>
+        <!-- <app-form-alumno></app-form-alumno> -->
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button class="btn btn-danger" mat-button (click)="onNoClick()">Close</button>
+</div>
+

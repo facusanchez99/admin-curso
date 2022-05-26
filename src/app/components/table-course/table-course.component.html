@@ -1,0 +1,37 @@
+<div class="content-table">
+    <div class="title-header">
+        <h1>Course Management</h1>
+    </div>
+    <mat-tab-group mat-align-tabs="start" *ngIf="course">
+        <mat-tab label="Courses">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark ">
+                    <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Course</th>
+                        <th scope="col">Teachers</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let a of course">
+                        <th scope="row">{{a.id}}</th>
+                        <td>{{a.course}}</td>
+                        <td><span *ngFor="let t of a.teachers">{{t.name}} {{t.surname}} </span></td>
+                        <td><button class="btn btn-primary" (click)="submitModalTable(a.id)">View</button></td>
+                        <td><button class="btn btn-primary" (click)="editCourse(a.id)">Edit</button></td>    <!-- abrir un modal con un formulario y editar esos campos -->
+                        <td><button class="btn btn-primary" (click)="delteCourse(a)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-tab>
+        <mat-tab label="Add Courses">
+            <button class="" (click)="addNewCourse()">send</button>
+        </mat-tab>
+    </mat-tab-group>
+    
+</div>
+
+  

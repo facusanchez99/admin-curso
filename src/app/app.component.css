@@ -15,6 +15,7 @@ app-footer{
 
 main{
     grid-area: main;
+    margin-top: 5%;
 }
 app-menu{
     grid-area: navbar;
