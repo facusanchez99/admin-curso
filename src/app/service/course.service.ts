@@ -18,7 +18,7 @@ export class CourseService {
       teachers: [
         { id: 2, name: "Jose", surname: "Sanchez", email: "jose@gmail.com", photo: null }],
       students: [
-        { id: 2, name: "Alumno 1", surname: "Alumno 1", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] },
+        { id: 1, name: "Alumno 1", surname: "Alumno 1", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] },
         { id: 2, name: "Alumno 2", surname: "Alumno 2", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] }
       ]
     });

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-// import { ProbandoComponent } from './components/probando/probando.component';
-import { FormAlumnoComponent } from './components/form-alumno/form-alumno.component';
-import { FormCursoComponent } from './components/form-curso/form-curso.component';
+// import { HomeComponent } from './components/home/home.component';
+import { ProbandoComponent } from './components/probando/probando.component';
+// import { FormAlumnoComponent } from './components/form-alumno/form-alumno.component';
+// import { FormCursoComponent } from './components/form-curso/form-curso.component';
 import { TableCourseComponent } from './components/table-course/table-course.component';
 import { StudentsComponent } from './components/students/students.component';
 import { TablaHomeComponent } from './components/tabla-home/tabla-home.component';
@@ -22,7 +22,7 @@ const routes: Routes = [
   // {path:'students/edit/:id',component:TablaHomeComponent},
   // {path:'course',component:ProbandoComponent},
   // {path:'admin',component:ProbandoComponent},
-  // {path:'student',component:ProbandoComponent},
+  {path:'p',component:ProbandoComponent},
   // {path:'teacher',component:ProbandoComponent},
 ];
 

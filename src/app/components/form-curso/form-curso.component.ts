@@ -37,7 +37,7 @@ export class FormCursoComponent implements OnInit {
     Array.isArray(this.teachers) ? this.isArray = true : this.isArray = false;
 
     this.formCourse = this.formBuilder.group({
-      course: [this.valueForm ? this.valueForm.course : null, [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
+      course: [this.valueForm ? this.valueForm.course : null, [Validators.required, Validators.minLength(2), Validators.maxLength(120)]],
       teacher: [null, [Validators.required]],
       // students:[null, [Validators.required]],
     })

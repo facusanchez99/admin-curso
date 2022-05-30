@@ -11,8 +11,29 @@ export class StudentService {
   public studentsMock: Student[] = [];
 
   constructor() {
-    this.studentsMock.push({ id: 1, name: "Alumno 1", surname: "Alumno 1", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] })
-    this.studentsMock.push({ id: 2, name: "Alumno 2", surname: "Alumno 2", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] })
+    this.studentsMock.push({
+      id: 1, name: "Alumno 1", surname: "Alumno 1", email: "email", photo: "foto", courses: [{
+        id: 1, course: "Programacion",
+        teachers: [
+          { id: 2, name: "Jose", surname: "Sanchez", email: "jose@gmail.com", photo: null }],
+        students: [
+          { id: 2, name: "Alumno 1", surname: "Alumno 1", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] },
+          { id: 2, name: "Alumno 2", surname: "Alumno 2", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] }
+        ]
+      }]
+    })
+
+    this.studentsMock.push({
+      id: 2, name: "Alumno 2", surname: "Alumno 2", email: "email", photo: "foto", courses: [{
+        id: 1, course: "Programacion",
+        teachers: [
+          { id: 2, name: "Jose", surname: "Sanchez", email: "jose@gmail.com", photo: null }],
+        students: [
+          { id: 2, name: "Alumno 1", surname: "Alumno 1", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] },
+          { id: 2, name: "Alumno 2", surname: "Alumno 2", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] }
+        ]
+      }]
+    })
   }
 
   getStudents(): Observable<Student[]> {
@@ -30,23 +51,24 @@ export class StudentService {
 
   updateStudents(student: Student): Observable<Student[]> {
     const index = this.studentsMock.findIndex(e => e.id === student.id);
-    this.studentsMock.splice(index,1,student);
+    this.studentsMock.splice(index, 1, student);
     return of(this.studentsMock);
   }
 
-  deleteStudents(student:Student): void {
+  deleteStudents(student: Student): void {
     const index = this.studentsMock.indexOf(student);
-    this.studentsMock.splice(index,1);
+    this.studentsMock.splice(index, 1);
   }
 
 
-  deleteStudentCourse(student:Student,course:Course):void{
-    this.studentsMock.findIndex(e=>{
-      if(e.id === student.id){
-        const index = e.courses.indexOf(course)
-        e.courses.splice(index,1);
-      }  
+  deleteStudentCourse(student: Student, course: Course): void {
+    this.studentsMock.findIndex(e => {
+      if (e.id === student.id) {
+        const index = e.courses.findIndex(c => c.id === course.id);
+        e.courses.splice(index, 1);
+      }
     })
+    console.log(this.studentsMock);
     //console.log(this.coursesMock);
   }
 
