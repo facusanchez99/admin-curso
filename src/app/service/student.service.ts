@@ -11,30 +11,32 @@ export class StudentService {
   public studentsMock: Student[] = [];
 
   constructor() {
-    this.studentsMock.push({ id: 1, name: "Alumno 1", surname: "Alumno 1", email: "email", photo: "foto",courses:[{id:1,course:"Programacion"}]})
-    this.studentsMock.push({ id: 2, name: "Alumno 2", surname: "Alumno 2", email: "email", photo: "foto",courses:[{id:1,course:"Programacion"}]})
+    this.studentsMock.push({ id: 1, name: "Alumno 1", surname: "Alumno 1", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] })
+    this.studentsMock.push({ id: 2, name: "Alumno 2", surname: "Alumno 2", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] })
   }
 
-  getStudents():Observable<Student[]>{
+  getStudents(): Observable<Student[]> {
     return of(this.studentsMock);
   }
 
-  getStudentsID(id:number):Student{
+  getStudentsID(id: number): Student {
     return null;
   }
 
-  postStudents():Student{
-    //retornar el valor agregado
-    return null;
+  postStudents(student: Student): Observable<Student[]> {
+    this.studentsMock.push(student);
+    return of(this.studentsMock);
   }
 
-  updateStudents():Student{
-    //retornar el valor update
-    return null;
+  updateStudents(student: Student): Observable<Student[]> {
+    const index = this.studentsMock.findIndex(e => e.id === student.id);
+    this.studentsMock.splice(index,1,student);
+    return of(this.studentsMock);
   }
 
-  deleteStudents():void{
-    //retornar status http
+  deleteStudents(student:Student): void {
+    const index = this.studentsMock.indexOf(student);
+    this.studentsMock.splice(index,1);
   }
 
 }

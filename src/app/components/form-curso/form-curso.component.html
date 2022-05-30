@@ -1,1 +1,34 @@
-<p>form-curso works!</p>
+<div class="content-form">
+    <div>
+        <h1 appTitle [size]="'30px'">Form Course</h1>
+    </div>
+
+    <div>
+        <form [formGroup]="formCourse" (ngSubmit)="submit()">
+            <div class="form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="course">
+                    <mat-error *ngIf="formCourse.invalid">{{getErrorMessage(formCourse.controls['course'])}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field  appearance="fill">
+                    <mat-label>Teacher</mat-label>
+
+                    <mat-select  formControlName="teacher" *ngIf="isArray">
+                        <mat-option *ngFor="let t of teachers" value="{{t.id}}">{{t.name}} {{t.surname}}</mat-option>
+                    </mat-select>
+
+                    <mat-select  formControlName="teacher" *ngIf="!isArray">
+                        <mat-option value="{{teachers.id}}">{{teachers.name}} {{teachers.surname}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formCourse.invalid">{{getErrorMessage(formCourse.controls['teacher'])}}</mat-error>
+                </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary" type="submit">Submit</button>
+            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+        </form>
+    </div>
+
+</div>

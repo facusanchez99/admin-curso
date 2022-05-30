@@ -21,14 +21,16 @@ export class TableCourseComponent implements OnInit {
 
 
   @Output() addCourse = new EventEmitter<Course>();
-  
+
   public course: Course[] = []
+  public courseSelect: Course;
+  public p:String = "Hola a"
 
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
     public breakpointObserver: BreakpointObserver,
-    private coursesService:CourseService
+    private coursesService: CourseService
   ) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
@@ -47,38 +49,50 @@ export class TableCourseComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.coursesService.getCourses().subscribe(course =>{
+    this.coursesService.getCourses().subscribe(course => {
       this.course = course;
-      console.log(this.course)
     })
   }
 
-  addNewCourse(id: number):void{
+  addNewCourse(course: Course): void {
+    console.log(course)
+    this.coursesService.postCourse(course);
     // let course2 = new Course(2, "Programacion 3", [],  [] );
     // this.addCourse.emit(course2);
   }
-
-  editCourse(id: number):void{
-
-  }
   
-  delteCourse(course:Course):void{
-    this.coursesService.deleteCourse(course).subscribe();
+  editCourse(course: Course) {
+    console.log(course)
+    this.coursesService.updateCourse(course);
+    this.courseSelect = null;
   }
 
-  submitModalTable(id: number):void {
-    const result = this.course.find(c => c.id === id);
+  selectEditCourse(course: Course): void {
+    this.courseSelect = null;
+    this.courseSelect = course;
+  }
+
+  exitEdit() {
+    this.courseSelect = null;
+  }
+
+  delteCourse(course: Course): void {
+    this.coursesService.deleteCourse(course);
+  }
+
+  submitModalTable(course: Course): void {
+    // const result = this.course.find(c => c.id === id);
     this.dialog.open(ModalCourseComponent, {
       data: {
-        id: result.id,
-        course: result.course,
-        teachers: result.teachers,
-        students: result.students
+        id: course.id,
+        course: course.course,
+        teachers: course.teachers,
+        students: course.students
       }
     })
   }
-  
-  submitModalStudent(id: number):void {
+
+  submitModalStudent(id: number): void {
     // const result = this.student.find(c => c.id === id);
     // this.dialog.open(ModalStudentComponent, {
     //   data: {

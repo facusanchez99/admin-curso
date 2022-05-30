@@ -1,11 +1,51 @@
 <div class="content-form">
     <div>
-        <h1>Form Student</h1>
+        <h1 appTitle [size]="'30px'">Form Student</h1>
     </div>
 
-    <div class="col-lg-5">
+    <div>
         <form [formGroup]="formAlumno" (ngSubmit)="submit()">
+            
             <div class="form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name">
+                    <mat-error *ngIf="formAlumno.invalid">{{getErrorMessage(formAlumno.controls['name'])}}</mat-error>
+                  
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Surname</mat-label>
+                    <input matInput  formControlName="surname">
+                    <mat-error *ngIf="formAlumno.invalid">{{getErrorMessage(formAlumno.controls['surname'])}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput  formControlName="email">
+                    <mat-error *ngIf="formAlumno.invalid">{{getErrorMessage(formAlumno.controls['email'])}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field  appearance="fill" *ngIf="!readOnly">
+                    <mat-label>Course</mat-label>
+
+                    <mat-select  formControlName="courses" *ngIf="isArray">
+                        <mat-option *ngFor="let c of courses" value="{{c.id}}">{{c.course}}</mat-option>
+                    </mat-select>
+
+                    <mat-select  formControlName="courses" *ngIf="!isArray">
+                        <mat-option value="{{courses.id}}">{{courses.course}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formAlumno.invalid">{{getErrorMessage(formAlumno.controls['courses'])}}</mat-error>
+                </mat-form-field>
+            </div>
+
+
+
+            <!-- <div class="form-group">
                 <label for="exampleFormControlInput1">Nombre</label>
                 <input type="text" class="form-control"
                     [ngClass]="{'is-invalid': formAlumno.get('name').errors !== null }" id="name" placeholder="Name"
@@ -32,6 +72,14 @@
                     Please enter your email.
                 </div>
             </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Email</label>
+                <mat-select>
+                    <mat-option value="one">First option</mat-option>
+                    <mat-option value="two">Second option</mat-option>
+                </mat-select>
+            </div> -->
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

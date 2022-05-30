@@ -7,9 +7,10 @@ import { StepperOrientation } from '@angular/cdk/stepper';
 import { FormBuilder, Validators } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { ModalCourseComponent } from '../table-course/modal-course/modal-course.component';
-import { ModalStudentComponent } from './modal-student/modal-student.component';
+import { ModalStudentComponent } from '../students/modal-student/modal-student.component';
 import { StudentService } from 'src/app/service/student.service';
 import { CourseService } from 'src/app/service/course.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tabla-home',
@@ -34,7 +35,8 @@ export class TablaHomeComponent implements OnInit {
     public dialog: MatDialog,
     public breakpointObserver: BreakpointObserver,
     private studentService:StudentService,
-    private coursesService:CourseService
+    private coursesService:CourseService,
+    private route:ActivatedRoute
   ) {
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
@@ -53,24 +55,32 @@ export class TablaHomeComponent implements OnInit {
 
 
   ngOnInit(): void {
-    //obtener alumnos globales //no se usa xasas
+
     // this.studentService.getStudents().subscribe(student=>{
     //   this.student = student;
     // })
-    this.coursesService.getCoursesID(1).subscribe(course =>{
-      this.course = course;
-      this.student = this.course.students 
-      console.log(this.course)
+    let id :number = 0;
+    this.route.params.subscribe(params=>{
+      id = parseInt(params['id']);
+      this.coursesService.getCoursesID(id).subscribe(course =>{
+        this.course = course;
+        this.student = this.course.students 
+        console.log(this.student)
+      })
     })
-    //obtener alumnos de un curso
-    // this.studentService.getStudentsCourseID(1).subscribe(student=>{
-    //   this.student = student;
-    // })
+
+
+  }
+  
+  ngOnDestroy() {
+    //this..unsubscribe();
   }
 
-  addNewCourse(){
-    // let course2 = new Course(2, "Programacion 3", [],  [] );
-    // this.addCourse.emit(course2);
+  addNewStudent(student:Student){
+    console.log(student);
+    this.studentService.postStudents(student);
+    this.coursesService.updateCourseStudent(student);
+   
   }
 
   submitModalTable(course: Course) {

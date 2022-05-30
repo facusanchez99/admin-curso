@@ -1,1 +1,96 @@
-<p>students works!</p>
+<div class="content-table">
+    <div class="title-header">
+        <h1 appTitle>Students Management</h1>
+    </div>
+    <mat-tab-group mat-align-tabs="start" *ngIf="student && !studentSelect">
+        <mat-tab label="Students">
+            <table class="table table-hover table-bordered" >
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Courses</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ngClass="{{(a.aprobado != null ? (a.aprobado == true ? 'aprobado' : 'desaprobado') : null)}}" -->
+                    <tr *ngFor="let a of student">
+                        <th scope="row">{{a.id}}</th>
+                        <td>Foto</td>
+                        <td>{{a.name}}</td>
+                        <td>{{a.surname}}</td>
+                        <td>{{a.email}}</td>
+                        <td> <span *ngFor="let c of a.courses">{{c.course}}</span></td>
+                        <td><button class="btn btn-primary" (click)="submitModalStudent(a.id)">View</button></td>
+                        <td><button class="btn btn-warning" (click)="selectEditStudent(a)">Edit</button></td>
+                        <td><button class="btn btn-danger" (click)="deleteStudent(student)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-tab>
+        <mat-tab label="Add Students">
+            <app-form-alumno (addStudent)="addNewStudent($event)" [courses]="courses"></app-form-alumno>
+        </mat-tab>
+      </mat-tab-group>
+
+      <mat-tab-group mat-align-tabs="start" color="accent" *ngIf="studentSelect">
+        <mat-tab label="Edit">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark ">
+                    <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{studentSelect.id}}</th>
+                        <td>Foto</td>
+                        <td>{{studentSelect.name}}</td>
+                        <td>{{studentSelect.surname}}</td>
+                        <td>{{studentSelect.email}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <app-form-alumno (editStudent)="editStudent($event)"  [courses]="courses" [valueForm]="studentSelect" readOnly="true"></app-form-alumno>
+            <button mat-raised-button color="warn" (click)="exitEdit()">Exit</button>
+        </mat-tab>
+       
+        <mat-tab label="Student">
+            <table class="table table-hover table-bordered" >
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Courses</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- ngClass="{{(a.aprobado != null ? (a.aprobado == true ? 'aprobado' : 'desaprobado') : null)}}" -->
+                    <tr *ngFor="let a of student">
+                        <th scope="row">{{a.id}}</th>
+                        <td>Foto</td>
+                        <td>{{a.name}}</td>
+                        <td>{{a.surname}}</td>
+                        <td>{{a.email}}</td>
+                        <td> <span *ngFor="let c of a.courses">{{c.course}}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+
+  

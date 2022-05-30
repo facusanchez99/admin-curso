@@ -1,6 +1,6 @@
 <div class="content-table">
     <div class="title-header">
-        <h1>Table</h1>
+        <h1 appTitle>Table</h1>
     </div>
     <mat-tab-group mat-align-tabs="start" *ngIf="student">
         <mat-tab label="Students">
@@ -29,11 +29,11 @@
             </table>
         </mat-tab>
         <mat-tab label="Add Students">
-            <app-form-alumno></app-form-alumno>
+            <app-form-alumno  (addStudent)="addNewStudent($event)" [courses]="course"></app-form-alumno>
         </mat-tab>
       </mat-tab-group>
     
-    <mat-tab-group mat-align-tabs="start" *ngIf="course">
+    <mat-tab-group mat-align-tabs="start" *ngIf="course" color="accent">
         <!-- esta tabla seria detalles solamente del curso. -->
         <mat-tab label="Courses">
             <table class="table table-hover table-bordered">
@@ -42,7 +42,7 @@
                         <th scope="col">#ID</th>
                         <th scope="col">Course</th>
                         <th scope="col">Teachers</th>
-                        <th scope="col">Details</th>
+                        <!-- <th scope="col">Details</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -50,7 +50,7 @@
                         <th scope="row">{{course.id}}</th>
                         <td>{{course.course}}</td>
                         <td><span *ngFor="let t of course.teachers">{{t.name}} {{t.surname}} </span></td>
-                        <td><button class="btn btn-primary" (click)="submitModalTable(course)">View</button></td>
+                        <!-- <td><button class="btn btn-primary" (click)="submitModalTable(course)">View</button></td> -->
                     </tr>
                 </tbody>
             </table>

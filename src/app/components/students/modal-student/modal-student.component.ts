@@ -21,7 +21,7 @@ export class ModalStudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.student)
+
   }
 
   onNoClick(){
@@ -33,13 +33,18 @@ export class ModalStudentComponent implements OnInit {
     //this.course.teachers.pop(t => t.id === teacher.id);
   }
 
-  deleteStudent(student:Student){
-    // const index = this.student.courses.indexOf(courses)
-    // this.student.courses.splice(index,1);
-  }
+  // deleteStudent(student:Student){
+  //   // const index = this.student.courses.indexOf(courses)
+  //   // this.student.courses.splice(index,1);
+  // }
   
-  deleteCourses(courses:Course){
-    const index = this.student.courses.indexOf(courses)
-    this.student.courses.splice(index,1);
+  // deleteCourses(courses:Course){
+  //   const index = this.student.courses.indexOf(courses)
+  //   this.student.courses.splice(index,1);
+  // }
+
+  deleteCourseStudent(course:Course,student:Student){
+    console.log(course)
+    console.log(student);
   }
 }

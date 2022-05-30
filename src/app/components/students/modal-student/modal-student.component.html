@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Student: {{student?.name}} {{student?.surname}}</h1>
+<h1 mat-dialog-title appTitle [size]="'20px'">Student: {{student?.name}} {{student?.surname}}</h1>
 <div mat-dialog-content class="mat-typography">
     <!-- <div class="modal-header">
         <h4 class="modal-title" id="exampleModalLabel">Cursos</h4>
@@ -12,8 +12,8 @@
                         <th scope="col">Name</th>
                         <th scope="col">Surname</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
+                        <!-- <th scope="col">Edit</th>
+                        <th scope="col">Delete</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -23,8 +23,8 @@
                             <td>{{student.name}}</td>
                             <td>{{student.surname}}</td>
                             <td>{{student.email}}</td>
-                            <td><button class="btn btn-warning">Edit</button></td>
-                            <td><button class="btn btn-danger" (click)="deleteStudent(student)">Delete</button></td>
+                            <!-- <td><button class="btn btn-warning">Edit</button></td>
+                            <td><button class="btn btn-danger" (click)="deleteStudent(student)">Delete</button></td> -->
                         </tr>
                     </tbody>
             </table>
@@ -46,8 +46,8 @@
                             <tr *ngFor="let a of student?.courses">
                                 <th scope="row">{{a.id}}</th>
                                 <td>{{a.course}}</td>
-                                <td><button class="btn btn-success">Open</button></td>
-                                <td><button class="btn btn-danger" (click)="deleteCourses(a)">Delete</button></td>
+                                <td><button class="btn btn-success" (click)="onNoClick()" [routerLink]="['/course/',a.id]">Open</button></td>
+                                <td><button class="btn btn-danger" (click)="deleteCourseStudent(a,student)">Delete</button></td>
                             </tr>
                         </tbody>
                 </table>
@@ -78,9 +78,6 @@
                 </tbody>
             </table>
         </div> -->
-    </div>
-    <div>
-        <!-- <app-form-alumno></app-form-alumno> -->
     </div>
 </div>
 <div mat-dialog-actions>

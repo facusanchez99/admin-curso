@@ -35,9 +35,11 @@ export class ModalCourseComponent implements OnInit {
     //this.course.teachers.pop(t => t.id === teacher.id);
   }
 
-  deleteTeacher(teacher:Teacher){
-    const index = this.course.teachers.indexOf(teacher)
-    this.course.teachers.splice(index,1);
-  }
+  // deleteTeacher(teacher:Teacher){
+  //   const index = this.course.teachers.indexOf(teacher)
+  //   this.course.teachers.splice(index,1);
+  // }
+
+
 
 }

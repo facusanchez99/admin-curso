@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>Course: {{course?.course}}</h1>
+<h1 mat-dialog-title appTitle [size]="'20px'">Course: {{course?.course}}</h1>
 <div mat-dialog-content class="mat-typography">
     <div class="modal-header">
         <h4 class="modal-title" id="exampleModalLabel">{{course?.course}}</h4>
@@ -14,8 +14,8 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
+                        <!-- <th scope="col">Edit</th>
+                        <th scope="col">Delete</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -26,8 +26,8 @@
                             <td>{{a.name}}</td>
                             <td>{{a.surname}}</td>
                             <td>{{a.email}}</td>
-                            <td><button class="btn btn-warning">Edit</button></td>
-                            <td><button class="btn btn-danger" (click)="deleteTeacher(a)">Delete</button></td>
+                            <!-- <td><button class="btn btn-warning">Edit</button></td>
+                            <td><button class="btn btn-danger" (click)="deleteTeacher(a)">Delete</button></td> -->
                         </tr>
                     </tbody>
             </table>
@@ -59,12 +59,9 @@
             </table>
         </div>
     </div>
-    <div>
-        <app-form-alumno></app-form-alumno>
-    </div>
 </div>
 <div mat-dialog-actions>
     <button class="btn btn-danger" mat-button (click)="onNoClick()">Close</button>
-    <button class="btn btn-success" mat-button>Open</button> <!-- router -->
+    <button class="btn btn-success" [routerLink]="['/course/',course.id]" (click)="onNoClick()" mat-button>Open</button> <!-- router -->
 </div>
 

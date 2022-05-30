@@ -1,8 +1,8 @@
 <div class="content-table">
     <div class="title-header">
-        <h1>Course Management</h1>
+        <h1 appTitle>Course Management</h1>
     </div>
-    <mat-tab-group mat-align-tabs="start" *ngIf="course">
+    <mat-tab-group mat-align-tabs="start" color="primary" *ngIf="course && !courseSelect">
         <mat-tab label="Courses">
             <table class="table table-hover table-bordered">
                 <thead class="thead-dark ">
@@ -20,18 +20,58 @@
                         <th scope="row">{{a.id}}</th>
                         <td>{{a.course}}</td>
                         <td><span *ngFor="let t of a.teachers">{{t.name}} {{t.surname}} </span></td>
-                        <td><button class="btn btn-primary" (click)="submitModalTable(a.id)">View</button></td>
-                        <td><button class="btn btn-primary" (click)="editCourse(a.id)">Edit</button></td>    <!-- abrir un modal con un formulario y editar esos campos -->
-                        <td><button class="btn btn-primary" (click)="delteCourse(a)">Delete</button></td>
+                        <td><button class="btn btn-primary" (click)="submitModalTable(a)">View</button></td>
+                        <td><button class="btn btn-warning" (click)="selectEditCourse(a)">Edit</button></td>    <!-- abrir un modal con un formulario y editar esos campos -->
+                        <td><button class="btn btn-danger" (click)="delteCourse(a)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
         </mat-tab>
         <mat-tab label="Add Courses">
-            <button class="" (click)="addNewCourse()">send</button>
+            <app-form-curso (addCourse)="addNewCourse($event)"></app-form-curso>
         </mat-tab>
     </mat-tab-group>
-    
+    <mat-tab-group mat-align-tabs="start" color="accent" *ngIf="courseSelect">
+        <mat-tab label="Edit">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark ">
+                    <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Course</th>
+                        <th scope="col">Teachers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">{{courseSelect.id}}</th>
+                        <td>{{courseSelect.course}}</td>
+                        <td><span *ngFor="let t of courseSelect.teachers">{{t.name}} {{t.surname}} </span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <app-form-curso (editCourse)="editCourse($event)" [valueForm]="courseSelect"></app-form-curso>
+            <button mat-raised-button color="warn" (click)="exitEdit()">Exit</button>
+        </mat-tab>
+       
+        <mat-tab label="Courses">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark ">
+                    <tr>
+                        <th scope="col">#ID</th>
+                        <th scope="col">Course</th>
+                        <th scope="col">Teachers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let a of course">
+                        <th scope="row">{{a.id}}</th>
+                        <td>{{a.course}}</td>
+                        <td><span *ngFor="let t of a.teachers">{{t.name}} {{t.surname}} </span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </mat-tab>
+    </mat-tab-group>
 </div>
 
   

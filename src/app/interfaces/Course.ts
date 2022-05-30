@@ -4,8 +4,8 @@ import { Teacher } from './Teacher';
 export interface Course {
     id: number;
     course: string;
-    teachers?: Teacher[]
-    students?: Student[];
+    teachers: Teacher[]
+    students: Student[];
 
     // constructor(id: number,course: string,teachers: Teacher[],students: Student[]) {
     //     this.id = id;
