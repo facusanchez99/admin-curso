@@ -2,6 +2,9 @@ import { Component, OnInit,Inject } from '@angular/core';
 import { Course } from 'src/app/interfaces/Course';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Teacher } from 'src/app/interfaces/Teacher';
+import { Student } from 'src/app/interfaces/Student';
+import { StudentService } from 'src/app/service/student.service';
+import { CourseService } from 'src/app/service/course.service';
 
 @Component({
   selector: 'app-modal-course',
@@ -14,7 +17,9 @@ export class ModalCourseComponent implements OnInit {
   public teacher:Teacher[];
 
   constructor(
-    public dialogRef: MatDialogRef<ModalCourseComponent>, @Inject(MAT_DIALOG_DATA) public data: Course
+    public dialogRef: MatDialogRef<ModalCourseComponent>, @Inject(MAT_DIALOG_DATA) public data: Course,
+    private studentService:StudentService,
+    private coursesService:CourseService,
   ) {
     this.course = data;
   }
@@ -41,5 +46,11 @@ export class ModalCourseComponent implements OnInit {
   // }
 
 
+  deleteCourseStudent(course:Course,student:Student){
+    console.log(course)
+    console.log(student);
+    this.coursesService.deleteStudentCourse(student);
+    this.studentService.deleteStudentCourse(student,course);
+  }
 
 }

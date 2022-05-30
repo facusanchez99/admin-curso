@@ -108,6 +108,11 @@ export class TablaHomeComponent implements OnInit {
     })
   }
 
+  deleteCourseStudent(course:Course,student:Student){
+    this.coursesService.deleteStudentCourse(student);
+    this.studentService.deleteStudentCourse(student,course);
+  }
+
   getErrorMessage(control: any) {
     if (control.errors.required) {
       return "Campo requerido"

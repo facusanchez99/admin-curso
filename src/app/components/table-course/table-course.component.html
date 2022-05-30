@@ -11,8 +11,8 @@
                         <th scope="col">Course</th>
                         <th scope="col">Teachers</th>
                         <th scope="col">Details</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
+                        <th *ngIf="role" scope="col">Edit</th>
+                        <th *ngIf="role" scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,8 +21,8 @@
                         <td>{{a.course}}</td>
                         <td><span *ngFor="let t of a.teachers">{{t.name}} {{t.surname}} </span></td>
                         <td><button class="btn btn-primary" (click)="submitModalTable(a)">View</button></td>
-                        <td><button class="btn btn-warning" (click)="selectEditCourse(a)">Edit</button></td>    <!-- abrir un modal con un formulario y editar esos campos -->
-                        <td><button class="btn btn-danger" (click)="delteCourse(a)">Delete</button></td>
+                        <td *ngIf="role"><button class="btn btn-warning" (click)="selectEditCourse(a)">Edit</button></td>    <!-- abrir un modal con un formulario y editar esos campos -->
+                        <td *ngIf="role"><button class="btn btn-danger" (click)="delteCourse(a)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -31,7 +31,7 @@
             <app-form-curso (addCourse)="addNewCourse($event)"></app-form-curso>
         </mat-tab>
     </mat-tab-group>
-    <mat-tab-group mat-align-tabs="start" color="accent" *ngIf="courseSelect">
+    <mat-tab-group mat-align-tabs="start" color="accent" *ngIf="courseSelect && role">
         <mat-tab label="Edit">
             <table class="table table-hover table-bordered">
                 <thead class="thead-dark ">

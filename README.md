@@ -1,5 +1,5 @@
 # Notas
-//comodar curso
+//eliminar alumno de un curso
 
 # AdminCurso
 

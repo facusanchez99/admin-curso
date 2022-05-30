@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   public viewMenu:boolean = false;
+  public username = sessionStorage.getItem('username');
   constructor() { }
 
   ngOnInit(): void {

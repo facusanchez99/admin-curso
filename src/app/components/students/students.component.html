@@ -14,8 +14,8 @@
                         <th scope="col">Email</th>
                         <th scope="col">Courses</th>
                         <th scope="col">Details</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
+                        <th scope="col" *ngIf="role">Edit</th>
+                        <th scope="col" *ngIf="role">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,9 +27,9 @@
                         <td>{{a.surname}}</td>
                         <td>{{a.email}}</td>
                         <td> <span *ngFor="let c of a.courses">{{c.course}}</span></td>
-                        <td><button class="btn btn-primary" (click)="submitModalStudent(a.id)">View</button></td>
-                        <td><button class="btn btn-warning" (click)="selectEditStudent(a)">Edit</button></td>
-                        <td><button class="btn btn-danger" (click)="deleteStudent(student)">Delete</button></td>
+                        <td><button class="btn btn-primary" (click)="submitModalStudent(a)">View</button></td>
+                        <td *ngIf="role"><button class="btn btn-warning" (click)="selectEditStudent(a)">Edit</button></td>
+                        <td *ngIf="role"><button class="btn btn-danger" (click)="deleteStudent(student)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -39,7 +39,7 @@
         </mat-tab>
       </mat-tab-group>
 
-      <mat-tab-group mat-align-tabs="start" color="accent" *ngIf="studentSelect">
+      <mat-tab-group mat-align-tabs="start" color="accent" *ngIf="studentSelect && role">
         <mat-tab label="Edit">
             <table class="table table-hover table-bordered">
                 <thead class="thead-dark ">

@@ -13,6 +13,7 @@
                         <th scope="col">Surname</th>
                         <th scope="col">Email</th>
                         <th scope="col">Details</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,6 +25,7 @@
                         <td>{{a.surname}}</td>
                         <td>{{a.email}}</td>
                         <td><button class="btn btn-primary" (click)="submitModalStudent(a.id)">View</button></td>
+                        <td><button class="btn btn-danger" (click)="deleteCourseStudent(course,a)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

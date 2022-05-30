@@ -24,6 +24,9 @@ export class StudentsComponent implements OnInit {
   public student:Student[];
   public courses:Course[];
   public studentSelect:Student;
+  public role:boolean = false;
+
+
 
   constructor(
     private fb: FormBuilder,
@@ -50,6 +53,10 @@ export class StudentsComponent implements OnInit {
 
   ngOnInit(): void {
     // obtener alumnos globales //no se usa xasas
+
+    if(sessionStorage.getItem('role')){
+      this.role = sessionStorage.getItem('role') ==='admin'? true : false;
+    }
     this.coursesService.getCourses().subscribe(course=>{
       this.courses = course;
     })
@@ -103,18 +110,18 @@ export class StudentsComponent implements OnInit {
     })
   }
   
-  submitModalStudent(id: number) {
-    const result = this.student.find(c => c.id === id);
+  submitModalStudent(student:Student) {
+    //const result = this.student.find(c => c.id === id);
     
     this.dialog.open(ModalStudentComponent, {
 
       data: {
-        id: result.id,
-        name:result.name.split(" ")[0], 
-        surname: result.name.split(" ")[1],
-        email: result.email,
-        photo: result.photo,
-        courses: result.courses
+        id: student.id,
+        name:student.name,
+        surname: student.surname,        
+        email: student.email,
+        photo: student.photo,
+        courses: student.courses
       }
     })
   }

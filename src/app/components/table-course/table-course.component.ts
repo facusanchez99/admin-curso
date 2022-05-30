@@ -24,7 +24,7 @@ export class TableCourseComponent implements OnInit {
 
   public course: Course[] = []
   public courseSelect: Course;
-  public p:String = "Hola a"
+  public role:boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -49,6 +49,10 @@ export class TableCourseComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if(sessionStorage.getItem('role')){
+      this.role = sessionStorage.getItem('role') ==='admin'? true : false;
+    }
+
     this.coursesService.getCourses().subscribe(course => {
       this.course = course;
     })
@@ -90,26 +94,6 @@ export class TableCourseComponent implements OnInit {
         students: course.students
       }
     })
-  }
-
-  submitModalStudent(id: number): void {
-    // const result = this.student.find(c => c.id === id);
-    // this.dialog.open(ModalStudentComponent, {
-    //   data: {
-    //     id: result.id,
-    //     name: result.name,
-    //     surname: result.surname,
-    //     email: result.email,
-    //     photo: result.photo,
-    //     courses: result.courses
-    //   }
-    // })
-    // id:number,
-    // name:string,
-    // surname:string,
-    // email:string,
-    // photo:string,
-    // courses:Curso[]
   }
 
   getErrorMessage(control: any) {

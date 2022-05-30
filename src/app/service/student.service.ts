@@ -39,4 +39,15 @@ export class StudentService {
     this.studentsMock.splice(index,1);
   }
 
+
+  deleteStudentCourse(student:Student,course:Course):void{
+    this.studentsMock.findIndex(e=>{
+      if(e.id === student.id){
+        const index = e.courses.indexOf(course)
+        e.courses.splice(index,1);
+      }  
+    })
+    //console.log(this.coursesMock);
+  }
+
 }

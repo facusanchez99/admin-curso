@@ -7,10 +7,12 @@ import { FormCursoComponent } from './components/form-curso/form-curso.component
 import { TableCourseComponent } from './components/table-course/table-course.component';
 import { StudentsComponent } from './components/students/students.component';
 import { TablaHomeComponent } from './components/tabla-home/tabla-home.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {path:'',component:TableCourseComponent,pathMatch:'full'},
   // {path:'home',component:HomeComponent},
+  {path:'login',component:LoginComponent},
   {path:'home',component:TableCourseComponent},
   {path:'students',component:StudentsComponent},
   {path:'courses',component:TableCourseComponent},

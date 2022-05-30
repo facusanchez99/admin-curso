@@ -38,7 +38,7 @@
                             <th scope="col">#ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Open</th>
-                            <th scope="col">Delete</th>
+                            <!-- <th scope="col">Delete</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +47,7 @@
                                 <th scope="row">{{a.id}}</th>
                                 <td>{{a.course}}</td>
                                 <td><button class="btn btn-success" (click)="onNoClick()" [routerLink]="['/course/',a.id]">Open</button></td>
-                                <td><button class="btn btn-danger" (click)="deleteCourseStudent(a,student)">Delete</button></td>
+                                <!-- <td><button class="btn btn-danger" (click)="deleteCourseStudent(a,student)">Delete</button></td> -->
                             </tr>
                         </tbody>
                 </table>
