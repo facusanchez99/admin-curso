@@ -1,6 +1,5 @@
 # Notas
-//form reactivo
-//pipe personalizada (al pedo)
+
 
 # AdminCurso
 
