@@ -73,7 +73,7 @@ export class TablaHomeComponent implements OnInit {
   }
   
   ngOnDestroy() {
-    //this..unsubscribe();
+    // this.route.unsubscribe();
   }
 
   addNewStudent(student:Student){

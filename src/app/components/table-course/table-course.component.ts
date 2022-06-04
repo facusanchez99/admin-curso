@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Student } from 'src/app/interfaces/Student';
 import { Course } from 'src/app/interfaces/Course';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,7 +16,7 @@ import { CourseService } from 'src/app/service/course.service';
   templateUrl: './table-course.component.html',
   styleUrls: ['./table-course.component.css']
 })
-export class TableCourseComponent implements OnInit {
+export class TableCourseComponent implements OnInit,OnDestroy {
 
 
 
@@ -36,6 +36,7 @@ export class TableCourseComponent implements OnInit {
       .observe('(min-width: 800px)')
       .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
   }
+
   firstFormGroup = this.fb.group({
     firstCtrl: ['', Validators.required],
   });
@@ -49,6 +50,9 @@ export class TableCourseComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // console.log(this.coursesService.getCourses1())
+  
+  
     if(sessionStorage.getItem('role')){
       this.role = sessionStorage.getItem('role') ==='admin'? true : false;
     }
@@ -58,6 +62,9 @@ export class TableCourseComponent implements OnInit {
     })
   }
 
+  ngOnDestroy(): void {
+   
+  }
   addNewCourse(course: Course): void {
     console.log(course)
     this.coursesService.postCourse(course);

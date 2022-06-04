@@ -14,6 +14,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -35,6 +36,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatStepperModule,
     MatSidenavModule,
     MatTooltipModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule { }

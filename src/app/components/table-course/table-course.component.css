@@ -1,23 +1,28 @@
-.content-table{
+
+.content-table {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
 }
-mat-tab-group{
+
+mat-tab-group {
     width: 80%;
 }
 
-.aprobado{
+.aprobado {
     background-color: rgba(115, 226, 100, 0.8);
 }
-.desaprobado{
-    background-color: rgb(241, 97, 97,0.8);
+
+.desaprobado {
+    background-color: rgb(241, 97, 97, 0.8);
 }
-.title-header{
+
+.title-header {
     text-align: center;
 }
+
 /* .modal-view-fixed {
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 10;
@@ -36,36 +41,42 @@ mat-tab-group{
     top: 0%;
 } */
 
-.animacion{
+.animacion {
     animation-duration: .5s;
     animation-fill-mode: both;
     -webkit-animation-duration: .5s;
     -webkit-animation-fill-mode: both;
 }
 
-.fadeIn{
+.fadeIn {
     animation-name: fadeIn;
     -webkit-animation-name: fadeIn;
 }
+
 .mat-tab-group {
     margin-bottom: 48px;
 }
-.mat-tab{
+
+.mat-tab {
     margin-bottom: 10px;
 }
+
 @keyframes fadeIn {
-    0%{
+    0% {
         opacity: 0;
     }
-    to{
+
+    to {
         opacity: 1;
     }
 }
-@-webkit-keyframes fadeIn{
-    0%{
+
+@-webkit-keyframes fadeIn {
+    0% {
         opacity: 0;
     }
-    to{
+
+    to {
         opacity: 1;
     }
 }
