@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CourseRoutingModule } from './course-routing.module';
 
-import { FormCursoComponent } from './form-curso/form-curso.component';
+import { FormCursoComponent } from '../form-curso/form-curso.component';
 
 
 

@@ -13,7 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MenuComponent } from './components/layout/menu/menu.component';
 import { TablaHomeComponent } from './components/tabla-home/tabla-home.component';
 import { FormAlumnoComponent } from './components/form-alumno/form-alumno.component';
-import { FormCursoComponent } from './components/courses/form-curso/form-curso.component';
+import { FormCursoComponent } from './components/form-curso/form-curso.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './components/module/material.module';
 import { ModalCourseComponent } from './components/table-course/modal-course/modal-course.component';

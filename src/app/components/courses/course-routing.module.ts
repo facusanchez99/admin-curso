@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TableCourseComponent } from './table-course/table-course.component';
+// import { TableCourseComponent } from './table-course/table-course.component';
 
 const routes: Routes = [
     // {path:'home',component:TableCourseComponent},
