@@ -10,9 +10,10 @@ import { TablaHomeComponent } from './components/tabla-home/tabla-home.component
 import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  {path:'',component:TableCourseComponent,pathMatch:'full'},
+
   // {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
+  {path:'prueba',loadChildren:()=>import('./first/first.module').then((m)=>m.FirstModule)},
   {path:'home',component:TableCourseComponent},
   {path:'students',component:StudentsComponent},
   {path:'courses',component:TableCourseComponent},
@@ -23,6 +24,8 @@ const routes: Routes = [
   // {path:'course',component:ProbandoComponent},
   // {path:'admin',component:ProbandoComponent},
   {path:'p',component:ProbandoComponent},
+  {path:'', redirectTo:'/home', pathMatch:'full'},
+  {path:'**',component:TableCourseComponent}
   // {path:'teacher',component:ProbandoComponent},
 ];
 

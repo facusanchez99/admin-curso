@@ -51,7 +51,8 @@ export class CourseService {
 
   getCourses(): Observable<Course[]> {
 
-    return of(this.coursesMock).pipe(delay(3000));
+    // return of(this.coursesMock).pipe(delay(3000));
+    return of(this.coursesMock);
   }
 
   getCoursesID(id: number): Observable<Course> {
