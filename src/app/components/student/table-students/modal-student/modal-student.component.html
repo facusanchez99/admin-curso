@@ -1,4 +1,4 @@
-<h1 mat-dialog-title appTitle [size]="'20px'">Student: {{student?.name}} {{student?.surname}}</h1>
+<h1 mat-dialog-title>Student: {{student?.name}} {{student?.surname}}</h1>
 <div mat-dialog-content class="mat-typography">
     <!-- <div class="modal-header">
         <h4 class="modal-title" id="exampleModalLabel">Cursos</h4>
@@ -46,7 +46,7 @@
                             <tr *ngFor="let a of student?.courses">
                                 <th scope="row">{{a.id}}</th>
                                 <td>{{a.course}}</td>
-                                <td><button class="btn btn-success" (click)="onNoClick()" [routerLink]="['/course/',a.id]">Open</button></td>
+                                <td><button class="btn btn-success" (click)="onNoClick()" [routerLink]="['/courses/',a.id]">Open</button></td>
                                 <!-- <td><button class="btn btn-danger" (click)="deleteCourseStudent(a,student)">Delete</button></td> -->
                             </tr>
                         </tbody>

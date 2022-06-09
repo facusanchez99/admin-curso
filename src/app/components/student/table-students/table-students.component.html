@@ -35,7 +35,7 @@
             </table>
         </mat-tab>
         <mat-tab label="Add Students">
-            <app-form-alumno (addStudent)="addNewStudent($event)" [courses]="courses"></app-form-alumno>
+            <app-form-student (addStudent)="addNewStudent($event)" [courses]="courses"></app-form-student>
         </mat-tab>
       </mat-tab-group>
 
@@ -61,7 +61,7 @@
                     </tr>
                 </tbody>
             </table>
-            <app-form-alumno (editStudent)="editStudent($event)"  [courses]="courses" [valueForm]="studentSelect" readOnly="true"></app-form-alumno>
+            <app-form-student (editStudent)="editStudent($event)"  [courses]="courses" [valueForm]="studentSelect" readOnly="true"></app-form-student>
             <button mat-raised-button color="warn" (click)="exitEdit()">Exit</button>
         </mat-tab>
        

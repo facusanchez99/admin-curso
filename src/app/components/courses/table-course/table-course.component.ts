@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { Student } from 'src/app/interfaces/Student';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+// import { Student } from 'src/app/interfaces/Student';
 import { Course } from 'src/app/interfaces/Course';
 import { MatDialog } from '@angular/material/dialog';
 import { BreakpointObserver } from '@angular/cdk/layout';
@@ -16,7 +16,7 @@ import { CourseService } from 'src/app/service/course.service';
   templateUrl: './table-course.component.html',
   styleUrls: ['./table-course.component.css']
 })
-export class TableCourseComponent implements OnInit,OnDestroy {
+export class TableCourseComponent implements OnInit {
 
 
 
@@ -62,9 +62,7 @@ export class TableCourseComponent implements OnInit,OnDestroy {
     })
   }
 
-  ngOnDestroy(): void {
-   
-  }
+
   addNewCourse(course: Course): void {
     console.log(course)
     this.coursesService.postCourse(course);

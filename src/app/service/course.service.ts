@@ -10,21 +10,9 @@ export class CourseService {
 
   public course: Observable<Array<Course>>
   private coursesMock: Course[] = [];
-  // private coursesMock1: Observable<Course[]> = [{
-  //   id: 1, course: "Programacion",
-  //   teachers: [
-  //     { id: 2, name: "Jose", surname: "Sanchez", email: "jose@gmail.com", photo: null }],
-  //   students: [
-  //     { id: 1, name: "Alumno 1", surname: "Alumno 1", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] },
-  //     { id: 2, name: "Alumno 2", surname: "Alumno 2", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] }
-  //   ]
-  // }]
 
-  constructor() {
 
-    //como lo deberia hacer? declarar la variable tipo Observable<array<course>> o 
-    //simplemente this.courseMock:course[] y retornar of(this.courseMock)
- 
+  constructor() { 
     this.coursesMock.push({
       id: 1, course: "Programacion",
       teachers: [
@@ -44,14 +32,12 @@ export class CourseService {
     });
   }
 
-
-  // getCourses1(): Observable<Course[]> {
-  //   return this.coursesMock1
-  // }
-
   getCourses(): Observable<Course[]> {
 
+<<<<<<< HEAD
     // return of(this.coursesMock).pipe(delay(3000));
+=======
+>>>>>>> testing
     return of(this.coursesMock);
   }
 

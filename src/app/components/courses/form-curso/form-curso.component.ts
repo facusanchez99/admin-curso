@@ -17,8 +17,8 @@ export class FormCursoComponent implements OnInit {
   @Output() addCourse = new EventEmitter<Course>();
   @Output() editCourse = new EventEmitter<Course>();
 
-  formCourse: FormGroup;
-  error: boolean = false;
+  public formCourse: FormGroup;
+  public error: boolean = false;
   public isArray = false;
   public course: Course[];
   public teachers: Teacher | Teacher[]
