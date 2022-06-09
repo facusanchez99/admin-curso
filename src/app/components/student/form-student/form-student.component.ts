@@ -6,11 +6,11 @@ import { CourseService } from 'src/app/service/course.service';
 import { StudentService } from 'src/app/service/student.service';
 
 @Component({
-  selector: 'app-form-alumno',
-  templateUrl: './form-alumno.component.html',
-  styleUrls: ['./form-alumno.component.css']
+  selector: 'app-form-student',
+  templateUrl: './form-student.component.html',
+  styleUrls: ['./form-student.component.css']
 })
-export class FormAlumnoComponent implements OnInit {
+export class FormStudentComponent implements OnInit {
 
   @Input() courses: Course | Course[]
   @Input() valueForm: Student;

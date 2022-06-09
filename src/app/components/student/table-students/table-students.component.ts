@@ -6,19 +6,19 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { FormBuilder, Validators } from '@angular/forms';
 import { map, Observable } from 'rxjs';
-import { ModalCourseComponent } from '../table-course/modal-course/modal-course.component';
-// import { ModalStudentComponent } from './modal-student/modal-student.component';
+import { ModalCourseComponent } from '../../courses/table-course/modal-course/modal-course.component';
+
 import { StudentService } from 'src/app/service/student.service';
 import { CourseService } from 'src/app/service/course.service';
 import { ModalStudentComponent } from './modal-student/modal-student.component';
 
 
 @Component({
-  selector: 'app-students',
-  templateUrl: './students.component.html',
-  styleUrls: ['./students.component.css']
+  selector: 'app-table-students',
+  templateUrl: './table-students.component.html',
+  styleUrls: ['./table-students.component.css']
 })
-export class StudentsComponent implements OnInit {
+export class TableStudentsComponent implements OnInit {
   
   // public detalle: Course;
   public student:Student[];
