@@ -9,14 +9,12 @@ import { MaterialModule } from 'src/app/module/material.module';
 
 import { TableStudentsComponent } from './table-students/table-students.component';
 import { ModalStudentComponent } from './table-students/modal-student/modal-student.component';
-import { FormStudentComponent } from './form-student/form-student.component';
-
+import { FormModule } from '../forms/form.module';
 
 @NgModule({
   declarations: [
     StudentComponent,
     TableStudentsComponent,
-    FormStudentComponent,
     ModalStudentComponent,
   ],
   imports: [
@@ -24,10 +22,9 @@ import { FormStudentComponent } from './form-student/form-student.component';
     CommonModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormModule
   ],
-  exports:[
-    FormStudentComponent
-  ]
+  exports:[]
 })
 export class StudentModule { }

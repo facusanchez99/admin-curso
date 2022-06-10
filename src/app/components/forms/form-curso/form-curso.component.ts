@@ -19,9 +19,9 @@ export class FormCursoComponent implements OnInit {
 
   public formCourse: FormGroup;
   public error: boolean = false;
-  public isArray = false;
+  // public isArray = false;
   public course: Course[];
-  public teachers: Teacher | Teacher[]
+  public teachers: Teacher[]
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,11 +30,10 @@ export class FormCursoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.teacherService.getTeachers().subscribe(res => {
-      this.teachers = res;
-    })
-
-    Array.isArray(this.teachers) ? this.isArray = true : this.isArray = false;
+ 
+    this.teacherService.getTeachers().pipe().subscribe((res=>this.teachers = res))
+    
+    // Array.isArray(this.teachers) ? this.isArray = true : this.isArray = false;
 
     this.formCourse = this.formBuilder.group({
       course: [this.valueForm ? this.valueForm.course : null, [Validators.required, Validators.minLength(2), Validators.maxLength(120)]],
@@ -42,6 +41,10 @@ export class FormCursoComponent implements OnInit {
       // students:[null, [Validators.required]],
     })
 
+
+  }
+
+  async getTeachers(){
 
   }
 

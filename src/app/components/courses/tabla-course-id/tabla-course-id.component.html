@@ -1,8 +1,10 @@
+<mat-progress-bar mode="indeterminate" *ngIf="!student"></mat-progress-bar>
 <div class="content-table">
+
     <div class="title-header">
         <h1 appTitle>Table</h1>
     </div>
-    <mat-tab-group mat-align-tabs="start" *ngIf="student">
+    <mat-tab-group mat-align-tabs="start">
         <mat-tab label="Students">
             <table class="table table-hover table-bordered" >
                 <thead class="thead-dark">
@@ -16,7 +18,7 @@
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody *ngIf="student">
                     <tr *ngFor="let a of student"
                         ngClass="{{(a.aprobado != null ? (a.aprobado == true ? 'aprobado' : 'desaprobado') : null)}}">
                         <th scope="row">{{a.id}}</th>
@@ -31,11 +33,11 @@
             </table>
         </mat-tab>
         <mat-tab label="Add Students">
-            <app-form-student  (addStudent)="addNewStudent($event)" [courses]="course"></app-form-student>
+            <app-form-student (addStudent)="addNewStudent($event)" [courses]="courses"></app-form-student>
         </mat-tab>
       </mat-tab-group>
     
-    <mat-tab-group mat-align-tabs="start" *ngIf="course" color="accent">
+    <mat-tab-group mat-align-tabs="start" color="accent">
         <!-- esta tabla seria detalles solamente del curso. -->
         <mat-tab label="Courses">
             <table class="table table-hover table-bordered">
@@ -47,7 +49,7 @@
                         <!-- <th scope="col">Details</th> -->
                     </tr>
                 </thead>
-                <tbody>
+                <tbody *ngIf="course">
                     <tr>
                         <th scope="row">{{course.id}}</th>
                         <td>{{course.course}}</td>
@@ -63,5 +65,3 @@
     </mat-tab-group>
     
 </div>
-
-  

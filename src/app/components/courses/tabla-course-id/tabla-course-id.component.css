@@ -8,6 +8,11 @@
 mat-tab-group{
     width: 80%;
 }
+mat-progress-bar{
+    position: absolute;
+    top: 0 ;
+    z-index: 10;
+}
 .aprobado{
     background-color: rgba(115, 226, 100, 0.8);
 }

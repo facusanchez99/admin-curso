@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { Course } from '../interfaces/Course';
 import { Student } from '../interfaces/Student';
 
@@ -37,7 +37,7 @@ export class StudentService {
   }
 
   getStudents(): Observable<Student[]> {
-    return of(this.studentsMock);
+    return of(this.studentsMock).pipe(delay(2000));
   }
 
   getStudentsID(id: number): Student {

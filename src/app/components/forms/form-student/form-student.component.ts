@@ -12,7 +12,7 @@ import { StudentService } from 'src/app/service/student.service';
 })
 export class FormStudentComponent implements OnInit {
 
-  @Input() courses: Course | Course[]
+  @Input() courses: Course[]
   @Input() valueForm: Student;
   @Input() readOnly: boolean = false;
 
@@ -22,7 +22,7 @@ export class FormStudentComponent implements OnInit {
   formAlumno: FormGroup;
   error: boolean = false;
 
-  public isArray = false;
+  // public isArray = false;
 
   public student: Student[];
 
@@ -38,8 +38,8 @@ export class FormStudentComponent implements OnInit {
     // })
     // console.log(this.courses)
 
-
-    Array.isArray(this.courses) ? this.isArray = true : this.isArray = false;
+    console.log(this.courses)
+    // Array.isArray(this.courses) ? this.isArray = true : this.isArray = false;
 
     this.formAlumno = this.formBuilder.group({
       name: [this.valueForm ? this.valueForm.name : null, [Validators.required,Validators.maxLength(60),Validators.minLength(2)]],

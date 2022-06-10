@@ -19,49 +19,36 @@ import { ModalStudentComponent } from './modal-student/modal-student.component';
   styleUrls: ['./table-students.component.css']
 })
 export class TableStudentsComponent implements OnInit {
-  
+
   // public detalle: Course;
-  public student:Student[];
-  public courses:Course[];
-  public studentSelect:Student;
-  public role:boolean = false;
+  public student: Student[];
+  public courses: Course[];
+  public studentSelect: Student = null;
+  public role: boolean = false;
 
 
 
   constructor(
-    private fb: FormBuilder,
+    // private fb: FormBuilder,
     public dialog: MatDialog,
     public breakpointObserver: BreakpointObserver,
-    private studentService:StudentService,
-    private coursesService:CourseService
-  ) {
-    this.stepperOrientation = breakpointObserver
-      .observe('(min-width: 800px)')
-      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
-  }
-  firstFormGroup = this.fb.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this.fb.group({
-    secondCtrl: ['', Validators.required],
-  });
-  thirdFormGroup = this.fb.group({
-    thirdCtrl: ['', Validators.required],
-  });
-  stepperOrientation: Observable<StepperOrientation>;
+    private studentService: StudentService,
+    private coursesService: CourseService
+  ) { }
+
 
 
   ngOnInit(): void {
     // obtener alumnos globales //no se usa xasas
 
-    if(sessionStorage.getItem('role')){
-      this.role = sessionStorage.getItem('role') ==='admin'? true : false;
+    if (sessionStorage.getItem('role')) {
+      this.role = sessionStorage.getItem('role') === 'admin' ? true : false;
     }
-    this.coursesService.getCourses().subscribe(course=>{
+    this.coursesService.getCourses().subscribe(course => {
       this.courses = course;
     })
 
-    this.studentService.getStudents().subscribe(student=>{
+    this.studentService.getStudents().subscribe(student => {
       this.student = student;
     })
 
@@ -72,29 +59,29 @@ export class TableStudentsComponent implements OnInit {
     // })
   }
 
-  addNewStudent(student:Student){
+  addNewStudent(student: Student) {
     console.log(student);
     this.studentService.postStudents(student);
     this.coursesService.updateCourseStudent(student);
-   
+
   }
 
-  deleteStudent(student:Student){
+  deleteStudent(student: Student) {
     this.studentService.deleteStudents(student);
     this.coursesService.deleteStudentCourse(student);
   }
 
-  selectEditStudent(student:Student){
+  selectEditStudent(student: Student) {
     this.studentSelect = student;
   }
 
-  editStudent(student:Student){
+  editStudent(student: Student) {
     this.studentService.updateStudents(student);
     //actualizar tambien en el array de cursos students
     this.studentSelect = null;
   }
 
-  exitEdit(){
+  exitEdit() {
     this.studentSelect = null;
   }
 
@@ -109,16 +96,16 @@ export class TableStudentsComponent implements OnInit {
       }
     })
   }
-  
-  submitModalStudent(student:Student) {
+
+  submitModalStudent(student: Student) {
     //const result = this.student.find(c => c.id === id);
-    
+
     this.dialog.open(ModalStudentComponent, {
 
       data: {
         id: student.id,
-        name:student.name,
-        surname: student.surname,        
+        name: student.name,
+        surname: student.surname,
         email: student.email,
         photo: student.photo,
         courses: student.courses

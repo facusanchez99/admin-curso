@@ -1,9 +1,10 @@
+
 <div class="content-form">
     <div>
         <h1>Form Course</h1>
     </div>
-
-    <div>
+    
+    <div *ngIf="teachers && teachers.length>0">
         <form [formGroup]="formCourse" (ngSubmit)="submit()">
             <div class="form-group">
                 <mat-form-field appearance="fill">
@@ -16,13 +17,13 @@
                 <mat-form-field  appearance="fill">
                     <mat-label>Teacher</mat-label>
 
-                    <mat-select  formControlName="teacher" *ngIf="isArray">
+                    <mat-select  formControlName="teacher">
                         <mat-option *ngFor="let t of teachers" value="{{t.id}}">{{t.name}} {{t.surname}}</mat-option>
                     </mat-select>
-
+<!-- 
                     <mat-select  formControlName="teacher" *ngIf="!isArray">
                         <mat-option value="{{teachers.id}}">{{teachers.name}} {{teachers.surname}}</mat-option>
-                    </mat-select>
+                    </mat-select> -->
                     <mat-error *ngIf="formCourse.invalid">{{getErrorMessage(formCourse.controls['teacher'])}}</mat-error>
                 </mat-form-field>
             </div>
@@ -30,5 +31,6 @@
             <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
         </form>
     </div>
-
+    <!-- <mat-progress-bar mode="indeterminate" *ngIf="!teachers"></mat-progress-bar> -->
+    <mat-spinner *ngIf="!teachers"></mat-spinner>
 </div>

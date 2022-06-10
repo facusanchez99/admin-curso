@@ -34,16 +34,12 @@ export class CourseService {
 
   getCourses(): Observable<Course[]> {
 
-<<<<<<< HEAD
-    // return of(this.coursesMock).pipe(delay(3000));
-=======
->>>>>>> testing
-    return of(this.coursesMock);
+    return of(this.coursesMock).pipe(delay(2000));
   }
 
   getCoursesID(id: number): Observable<Course> {
 
-    return of(this.coursesMock.find(e => e.id === id));
+    return of(this.coursesMock.find(e => e.id === id)).pipe(delay(2000));
   }
 
   postCourse(course: Course): Observable<Course[]> {

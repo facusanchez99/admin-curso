@@ -28,6 +28,7 @@ export class TablaCourseIDComponent implements OnInit {
   
   public detalle: Course;
   public student:Student[];
+  public courses:Course[] = [];
   public course:Course;
 
   constructor(
@@ -65,6 +66,7 @@ export class TablaCourseIDComponent implements OnInit {
       this.coursesService.getCoursesID(id).subscribe(course =>{
         this.course = course;
         this.student = this.course.students 
+        this.courses.push(this.course)
         console.log(this.student)
       })
     })

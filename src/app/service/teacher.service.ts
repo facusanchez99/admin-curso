@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { catchError, delay, Observable, of } from 'rxjs';
 import { Teacher } from '../interfaces/Teacher';
 
 @Injectable({
@@ -16,7 +16,9 @@ export class TeacherService {
   }
 
   getTeachers(): Observable<Teacher[]> {
-    return of(this.teachersMock);
+    return of(this.teachersMock).pipe(
+        delay(2000)
+      );
   }
 
   getTeacherID(id: number): Observable<Teacher> {

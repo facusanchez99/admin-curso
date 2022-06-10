@@ -4,8 +4,21 @@ import { TableStudentsComponent } from './table-students/table-students.componen
 // import { TableStudentsComponent } from './table-students/table-students.component';
 
 const routes: Routes = [
-    {path:'',component:TableStudentsComponent},
-    // {path:'students/:id',component:TableStudentsComponent},
+  // {path:'students',component:TableStudentsComponent},
+  // {path:'students/:id',component:TableStudentsComponent},
+  {
+    path: '',
+    children: [
+      {
+        path: '',
+        component: TableStudentsComponent
+      },
+      // {
+      //   path: 'courses/:id',
+      //   component: TablaCourseIDComponent
+      // }
+    ]
+  }
 ];
 
 @NgModule({
