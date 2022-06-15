@@ -31,22 +31,7 @@ export class TableCourseComponent implements OnInit {
     public dialog: MatDialog,
     public breakpointObserver: BreakpointObserver,
     private coursesService: CourseService
-  ) {
-    this.stepperOrientation = breakpointObserver
-      .observe('(min-width: 800px)')
-      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
-  }
-
-  firstFormGroup = this.fb.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this.fb.group({
-    secondCtrl: ['', Validators.required],
-  });
-  thirdFormGroup = this.fb.group({
-    thirdCtrl: ['', Validators.required],
-  });
-  stepperOrientation: Observable<StepperOrientation>;
+  ) {}
 
 
   ngOnInit(): void {
