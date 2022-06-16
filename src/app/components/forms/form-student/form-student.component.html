@@ -48,5 +48,7 @@
         </form>
     </div>
     <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
-    <mat-spinner *ngIf="!courses"></mat-spinner>
+    <div class="load" *ngIf="!load">
+        <mat-spinner></mat-spinner>
+    </div>
 </div>

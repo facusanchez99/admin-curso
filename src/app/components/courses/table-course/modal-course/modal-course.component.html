@@ -46,8 +46,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let a of course?.students"
-                        ngClass="{{(a.aprobado != null ? (a.aprobado == true ? 'aprobado' : 'desaprobado') : null)}}">
+                    <tr *ngFor="let a of course?.students">
                         <th scope="row">{{a.id}}</th>
                         <td>Foto</td>
                         <td>{{a.name}}</td>

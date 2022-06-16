@@ -22,6 +22,7 @@ export class FormCursoComponent implements OnInit {
   // public isArray = false;
   public course: Course[];
   public teachers: Teacher[]
+  public load:boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +32,10 @@ export class FormCursoComponent implements OnInit {
 
   ngOnInit(): void {
  
-    this.teacherService.getTeachers().pipe().subscribe((res=>this.teachers = res))
+    this.teacherService.getTeachers().pipe().subscribe((res=>{
+      this.teachers = res
+      this.load = true;
+    }))
     
     // Array.isArray(this.teachers) ? this.isArray = true : this.isArray = false;
 
@@ -50,6 +54,7 @@ export class FormCursoComponent implements OnInit {
 
   submit() {
     if (!this.formCourse.invalid) {
+      this.load = false;
       this.courseService.getCourses().subscribe(res => {
         this.course = res;
       })
@@ -77,12 +82,12 @@ export class FormCursoComponent implements OnInit {
       } else {
         let courseNew: Course;
         //el ID deberia generarse por base de datos o a traves de una libreria.
-        let id = this.course[this.course.length - 1] ? this.course[this.course.length - 1].id + 1 : 1;
+        // let id = this.course[this.course.length - 1] ? this.course[this.course.length - 1].id + 1 : 1;
 
         this.teacherService.getTeacherID(parseInt(this.formCourse.value.teacher)).subscribe(teacher => {
           this.formCourse.controls['teacher'].setValue(teacher);
           courseNew = {
-            id,
+            // id,
             course: this.formCourse.get('course').value,
             teachers: [{
               id: teacher.id,
@@ -97,7 +102,7 @@ export class FormCursoComponent implements OnInit {
         })
         this.addCourse.next(courseNew);
       }
-
+      this.load = true;
     } else {
 
     }

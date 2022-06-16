@@ -25,7 +25,6 @@ export class ModalStudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.student)
 
   }
 
@@ -34,7 +33,6 @@ export class ModalStudentComponent implements OnInit {
   }
 
   edit(student:Student){
-    console.log(student);
     //this.course.teachers.pop(t => t.id === teacher.id);
   }
 

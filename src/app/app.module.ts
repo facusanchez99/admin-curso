@@ -22,7 +22,7 @@ import { TitleDirective } from './utils/title.directive';
 
 import { CourseModule } from './components/courses/course.module';
 import { StudentModule } from './components/student/student.module';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,6 +37,7 @@ import { StudentModule } from './components/student/student.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

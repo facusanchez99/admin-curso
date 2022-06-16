@@ -49,7 +49,7 @@ export class ModalCourseComponent implements OnInit {
   deleteCourseStudent(course:Course,student:Student){
     console.log(course)
     console.log(student);
-    this.coursesService.deleteStudentCourse(student);
+    this.coursesService.deleteStudentCourse(student,course);
     this.studentService.deleteStudentCourse(student,course);
   }
 

@@ -24,56 +24,44 @@ export class TableCourseComponent implements OnInit {
 
   public course: Course[] = []
   public courseSelect: Course;
-  public role:boolean = false;
+  public role: boolean = false;
+  public load:boolean = false;
 
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialog,
     public breakpointObserver: BreakpointObserver,
     private coursesService: CourseService
-  ) {
-    this.stepperOrientation = breakpointObserver
-      .observe('(min-width: 800px)')
-      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
-  }
-
-  firstFormGroup = this.fb.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this.fb.group({
-    secondCtrl: ['', Validators.required],
-  });
-  thirdFormGroup = this.fb.group({
-    thirdCtrl: ['', Validators.required],
-  });
-  stepperOrientation: Observable<StepperOrientation>;
-
+  ) {}
 
   ngOnInit(): void {
-    // console.log(this.coursesService.getCourses1())
-  
-  
-    if(sessionStorage.getItem('role')){
-      this.role = sessionStorage.getItem('role') ==='admin'? true : false;
+    if (sessionStorage.getItem('role')) {
+      this.role = sessionStorage.getItem('role') === 'admin' ? true : false;
     }
-
     this.coursesService.getCourses().subscribe(course => {
       this.course = course;
+      this.load = true;
     })
   }
 
-
   addNewCourse(course: Course): void {
-    console.log(course)
-    this.coursesService.postCourse(course);
-    // let course2 = new Course(2, "Programacion 3", [],  [] );
-    // this.addCourse.emit(course2);
+    this.coursesService.postCourse(course).subscribe(data => {
+      this.course.push(data);
+    })
   }
-  
+
   editCourse(course: Course) {
-    console.log(course)
-    this.coursesService.updateCourse(course);
+    this.coursesService.updateCourse(course).subscribe(data => {
+      const index = this.course.findIndex(e => e.id == data.id);
+      this.course.splice(index, 1, data)
+    })
     this.courseSelect = null;
+  }
+
+  delteCourse(id: number): void {
+    this.coursesService.deleteCourse(id).subscribe(data => {
+      this.course = this.course.filter(e => e.id !== id)
+    });
   }
 
   selectEditCourse(course: Course): void {
@@ -84,11 +72,6 @@ export class TableCourseComponent implements OnInit {
   exitEdit() {
     this.courseSelect = null;
   }
-
-  delteCourse(course: Course): void {
-    this.coursesService.deleteCourse(course);
-  }
-
   submitModalTable(course: Course): void {
     // const result = this.course.find(c => c.id === id);
     this.dialog.open(ModalCourseComponent, {
