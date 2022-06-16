@@ -1,4 +1,8 @@
-<mat-progress-bar mode="indeterminate" *ngIf="!student"></mat-progress-bar>
+
+<div class="load" *ngIf="!load">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
 <div class="content-table">
 
     <div class="title-header">
@@ -19,8 +23,7 @@
                     </tr>
                 </thead>
                 <tbody *ngIf="student">
-                    <tr *ngFor="let a of student"
-                        ngClass="{{(a.aprobado != null ? (a.aprobado == true ? 'aprobado' : 'desaprobado') : null)}}">
+                    <tr *ngFor="let a of student">
                         <th scope="row">{{a.id}}</th>
                         <td>Foto</td>
                         <td>{{a.name}}</td>

@@ -1,4 +1,6 @@
-<mat-progress-bar mode="indeterminate" *ngIf="!student"></mat-progress-bar>
+<div class="load" *ngIf="!load">
+    <mat-progress-bar mode="indeterminate" ></mat-progress-bar>
+</div>
 <div class="content-table">
     <div class="title-header">
         <h1 appTitle>Students Management</h1>
@@ -30,7 +32,7 @@
                         <td> <span *ngFor="let c of a.courses">{{c.course}}</span></td>
                         <td><button class="btn btn-primary" (click)="submitModalStudent(a)">View</button></td>
                         <td *ngIf="role"><button class="btn btn-warning" (click)="selectEditStudent(a)">Edit</button></td>
-                        <td *ngIf="role"><button class="btn btn-danger" (click)="deleteStudent(student)">Delete</button></td>
+                        <td *ngIf="role"><button class="btn btn-danger" (click)="deleteStudent(a)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

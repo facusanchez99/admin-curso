@@ -1,4 +1,8 @@
-<mat-progress-bar mode="indeterminate" *ngIf="course.length == 0"></mat-progress-bar>
+
+<div class="load" *ngIf="!load">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
 <div class="content-table">
     <div class="title-header">
         <h1 appTitle>Course Management</h1>
@@ -26,7 +30,7 @@
                         <td><button class="btn btn-primary" (click)="submitModalTable(a)">View</button></td>
                         <td *ngIf="role"><button class="btn btn-warning" (click)="selectEditCourse(a)">Edit</button>
                         </td> <!-- abrir un modal con un formulario y editar esos campos -->
-                        <td *ngIf="role"><button class="btn btn-danger" (click)="delteCourse(a)">Delete</button></td>
+                        <td *ngIf="role"><button class="btn btn-danger" (click)="delteCourse(a.id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

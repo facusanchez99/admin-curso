@@ -2,74 +2,54 @@ import { Injectable } from '@angular/core';
 import { delay, Observable, of } from 'rxjs';
 import { Course } from '../interfaces/Course';
 import { Student } from '../interfaces/Student';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class StudentService {
 
-  public studentsMock: Student[] = [];
+  private url = "https://62aa24153b3143855442d06e.mockapi.io/student";
 
-  constructor() {
-    this.studentsMock.push({
-      id: 1, name: "Alumno 1", surname: "Alumno 1", email: "email", photo: "foto", courses: [{
-        id: 1, course: "Programacion",
-        teachers: [
-          { id: 2, name: "Jose", surname: "Sanchez", email: "jose@gmail.com", photo: null }],
-        students: [
-          { id: 2, name: "Alumno 1", surname: "Alumno 1", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] },
-          { id: 2, name: "Alumno 2", surname: "Alumno 2", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] }
-        ]
-      }]
+  private configurationOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
     })
+  }
 
-    this.studentsMock.push({
-      id: 2, name: "Alumno 2", surname: "Alumno 2", email: "email", photo: "foto", courses: [{
-        id: 1, course: "Programacion",
-        teachers: [
-          { id: 2, name: "Jose", surname: "Sanchez", email: "jose@gmail.com", photo: null }],
-        students: [
-          { id: 2, name: "Alumno 1", surname: "Alumno 1", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] },
-          { id: 2, name: "Alumno 2", surname: "Alumno 2", email: "email", photo: "foto", courses: [{ id: 1, course: "Programacion", teachers: [], students: [] }] }
-        ]
-      }]
-    })
+  constructor(private http:HttpClient) {
+
   }
 
   getStudents(): Observable<Student[]> {
-    return of(this.studentsMock).pipe(delay(2000));
+    return this.http.get<Student[]>(this.url,this.configurationOptions);
   }
 
-  getStudentsID(id: number): Student {
-    return null;
+  getStudentsID(id: number): Observable<Student> {
+    return this.http.get<Student>(`${this.url}/${id}`,this.configurationOptions);
   }
 
-  postStudents(student: Student): Observable<Student[]> {
-    this.studentsMock.push(student);
-    return of(this.studentsMock);
+  async postStudents(student: Student): Promise<Student> {
+    return await this.http.post<Student>(this.url,student,this.configurationOptions).toPromise();
   }
 
-  updateStudents(student: Student): Observable<Student[]> {
-    const index = this.studentsMock.findIndex(e => e.id === student.id);
-    this.studentsMock.splice(index, 1, student);
-    return of(this.studentsMock);
+  updateStudents(student: Student): Observable<Student> {
+    return this.http.put<Student>(`${this.url}/${student.id}`,student,this.configurationOptions);
   }
 
-  deleteStudents(student: Student): void {
-    const index = this.studentsMock.indexOf(student);
-    this.studentsMock.splice(index, 1);
+  deleteStudents(id: number): Observable<Student> {
+    return this.http.delete<Student>(`${this.url}/${id}`,this.configurationOptions);
   }
 
 
-  deleteStudentCourse(student: Student, course: Course): void {
-    this.studentsMock.findIndex(e => {
-      if (e.id === student.id) {
-        const index = e.courses.findIndex(c => c.id === course.id);
-        e.courses.splice(index, 1);
-      }
-    })
-    console.log(this.studentsMock);
-    //console.log(this.coursesMock);
+  deleteStudentCourse(student: Student, course: Course): Observable<Student> {
+    const index = student.courses.findIndex(c =>c.id === course.id);
+    if(index >=0){
+      student.courses.splice(index,1);
+    }
+   
+    return this.http.put<Student>(`${this.url}/${student.id}`,student,this.configurationOptions);
   }
 
 }

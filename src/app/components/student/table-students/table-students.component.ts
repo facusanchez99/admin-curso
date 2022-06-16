@@ -25,6 +25,7 @@ export class TableStudentsComponent implements OnInit {
   public courses: Course[];
   public studentSelect: Student = null;
   public role: boolean = false;
+  public load:boolean = false;
 
 
 
@@ -50,25 +51,23 @@ export class TableStudentsComponent implements OnInit {
 
     this.studentService.getStudents().subscribe(student => {
       this.student = student;
+      this.load = true;
     })
-
-
-    //obtener alumnos de un curso
-    // this.studentService.getStudentsCourseID(1).subscribe(student=>{
-    //   this.student = student;
-    // })
   }
 
-  addNewStudent(student: Student) {
-    console.log(student);
-    this.studentService.postStudents(student);
-    this.coursesService.updateCourseStudent(student);
+  async addNewStudent(student: Student) {
+    const studentPost = await this.studentService.postStudents(student)
+    this.student.push(studentPost);
+    this.coursesService.updateCourseStudent(studentPost, student.courses.pop()).subscribe();
 
   }
 
   deleteStudent(student: Student) {
-    this.studentService.deleteStudents(student);
-    this.coursesService.deleteStudentCourse(student);
+    this.studentService.deleteStudents(student.id).subscribe(data => {
+      this.student = this.student.filter(s => s.id != student.id);
+    });
+
+    this.coursesService.deleteStudentCourse(student, student.courses.pop()).subscribe();
   }
 
   selectEditStudent(student: Student) {
@@ -76,8 +75,7 @@ export class TableStudentsComponent implements OnInit {
   }
 
   editStudent(student: Student) {
-    this.studentService.updateStudents(student);
-    //actualizar tambien en el array de cursos students
+    this.studentService.updateStudents(student).subscribe();
     this.studentSelect = null;
   }
 

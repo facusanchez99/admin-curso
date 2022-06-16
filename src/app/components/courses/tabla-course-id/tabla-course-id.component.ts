@@ -30,6 +30,7 @@ export class TablaCourseIDComponent implements OnInit {
   public student:Student[];
   public courses:Course[] = [];
   public course:Course;
+  public load:boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -39,24 +40,11 @@ export class TablaCourseIDComponent implements OnInit {
     private coursesService:CourseService,
     private route:ActivatedRoute
   ) {
-    this.stepperOrientation = breakpointObserver
-      .observe('(min-width: 800px)')
-      .pipe(map(({ matches }) => (matches ? 'horizontal' : 'vertical')));
+
   }
-  firstFormGroup = this.fb.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this.fb.group({
-    secondCtrl: ['', Validators.required],
-  });
-  thirdFormGroup = this.fb.group({
-    thirdCtrl: ['', Validators.required],
-  });
-  stepperOrientation: Observable<StepperOrientation>;
 
 
   ngOnInit(): void {
-
     // this.studentService.getStudents().subscribe(student=>{
     //   this.student = student;
     // })
@@ -67,8 +55,8 @@ export class TablaCourseIDComponent implements OnInit {
         this.course = course;
         this.student = this.course.students 
         this.courses.push(this.course)
-        console.log(this.student)
       })
+      this.load = true;
     })
 
 
@@ -78,11 +66,15 @@ export class TablaCourseIDComponent implements OnInit {
     // this.route.unsubscribe();
   }
 
-  addNewStudent(student:Student){
-    console.log(student);
-    this.studentService.postStudents(student);
-    this.coursesService.updateCourseStudent(student);
-   
+  async addNewStudent(student:Student){
+    
+    const studentPost = await this.studentService.postStudents(student)
+    this.student.push(studentPost);
+    console.log(studentPost)
+    this.coursesService.updateCourseStudent(studentPost,student.courses.pop()).subscribe(data=>{
+        this.course = data;
+        this.student = data.students
+    });
   }
 
   submitModalTable(course: Course) {
@@ -111,8 +103,10 @@ export class TablaCourseIDComponent implements OnInit {
   }
 
   deleteCourseStudent(course:Course,student:Student){
-    this.coursesService.deleteStudentCourse(student);
-    this.studentService.deleteStudentCourse(student,course);
+    this.coursesService.deleteStudentCourse(student,course).subscribe(data=>{
+      this.course.students.filter(e=>e.id != student.id);
+    });
+    this.studentService.deleteStudentCourse(student,course).subscribe();
   }
 
   getErrorMessage(control: any) {
