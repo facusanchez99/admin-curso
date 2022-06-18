@@ -4,7 +4,7 @@ import { Course } from 'src/app/interfaces/Course';
 import { MatDialog } from '@angular/material/dialog';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
-import { FormBuilder, Validators } from '@angular/forms';
+// import { FormBuilder, Validators } from '@angular/forms';
 import { map, Observable } from 'rxjs';
 import { ModalCourseComponent } from './modal-course/modal-course.component';
 import { CourseService } from 'src/app/service/course.service';
@@ -28,7 +28,7 @@ export class TableCourseComponent implements OnInit {
   public load:boolean = false;
 
   constructor(
-    private fb: FormBuilder,
+    // private fb: FormBuilder,
     public dialog: MatDialog,
     public breakpointObserver: BreakpointObserver,
     private coursesService: CourseService
@@ -38,6 +38,10 @@ export class TableCourseComponent implements OnInit {
     if (sessionStorage.getItem('role')) {
       this.role = sessionStorage.getItem('role') === 'admin' ? true : false;
     }
+    this.getCourses();
+  }
+
+  getCourses(){
     this.coursesService.getCourses().subscribe(course => {
       this.course = course;
       this.load = true;
@@ -58,7 +62,7 @@ export class TableCourseComponent implements OnInit {
     this.courseSelect = null;
   }
 
-  delteCourse(id: number): void {
+  deleteCourse(id: number): void {
     this.coursesService.deleteCourse(id).subscribe(data => {
       this.course = this.course.filter(e => e.id !== id)
     });

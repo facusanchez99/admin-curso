@@ -9,17 +9,10 @@ import { User } from './interfaces/User';
 })
 export class AppComponent implements OnInit{
 
-  title = 'admin-curso';
 
-  valuetocheck= true;
-  public asyncObservable:Observable<string>
   
   ngOnInit(): void {
-    this.asyncObservable = this.conObservable('observable')
-  }
 
-  conObservable(value:string):Observable<string>{
-    return of(value).pipe(delay(2000));
   }
   
 }

@@ -13,7 +13,7 @@ import { ModalCourseComponent } from './table-course/modal-course/modal-course.c
 
 import { CourseComponent } from './course.component';
 import { FormModule } from '../forms/form.module';
-
+import { MatDialog } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -22,6 +22,7 @@ import { FormModule } from '../forms/form.module';
     ModalCourseComponent,
     TableCourseComponent,
     TablaCourseIDComponent,
+    
     // FormCursoComponent
   ],
   imports: [
@@ -33,6 +34,7 @@ import { FormModule } from '../forms/form.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+  
   ],
   exports:[]
 })

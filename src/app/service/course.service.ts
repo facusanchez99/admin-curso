@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { delay, from, map, Observable, of, tap } from 'rxjs';
+import { catchError, delay, from, map, Observable, of, tap, throwError } from 'rxjs';
 import { Course } from '../interfaces/Course';
 import { Student } from '../interfaces/Student';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
@@ -22,9 +22,15 @@ export class CourseService {
   constructor(private http: HttpClient) {
 
   }
+  private handleError(error: HttpErrorResponse){
+    if(error){
+      console.warn(`Error de backend tipo ${error.status} con el mensaje de ${error.message}`)
+    }
+    return throwError('Error de comunicacion http');
+  }
 
   getCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(this.url, this.configurationOptions);
+    return this.http.get<Course[]>(this.url, this.configurationOptions).pipe(catchError(this.handleError));
   }
 
   getCoursesID(id: number): Observable<Course> {

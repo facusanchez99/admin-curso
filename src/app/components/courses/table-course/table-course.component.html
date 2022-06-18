@@ -30,7 +30,7 @@
                         <td><button class="btn btn-primary" (click)="submitModalTable(a)">View</button></td>
                         <td *ngIf="role"><button class="btn btn-warning" (click)="selectEditCourse(a)">Edit</button>
                         </td> <!-- abrir un modal con un formulario y editar esos campos -->
-                        <td *ngIf="role"><button class="btn btn-danger" (click)="delteCourse(a.id)">Delete</button></td>
+                        <td *ngIf="role"><button class="btn btn-danger" (click)="deleteCourse(a.id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
