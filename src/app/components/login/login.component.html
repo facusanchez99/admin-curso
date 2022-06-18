@@ -18,8 +18,8 @@
                 <mat-form-field  appearance="fill">
                     <mat-label>Role</mat-label>
                     <mat-select  formControlName="role">
-                        <mat-option value="admin">Admin</mat-option>
-                        <mat-option value="user">User</mat-option>
+                        <mat-option value="ADMIN_ROLE">Admin</mat-option>
+                        <mat-option value="USER_ROLE">User</mat-option>
                     </mat-select>
                     <mat-error *ngIf="formUser.invalid">{{getErrorMessage(formUser.controls['role'])}}</mat-error>
                 </mat-form-field>

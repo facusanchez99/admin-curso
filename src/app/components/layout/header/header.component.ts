@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -6,15 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public viewMenu:boolean = false;
+  public viewMenu: boolean = false;
+  //esto deberia tener verificacion con token +db
   public username = sessionStorage.getItem('username');
-  constructor() { }
+  constructor(private router: Router) { }
+
 
   ngOnInit(): void {
+
   }
-  
-  openMenu(){
+
+  openMenu() {
     this.viewMenu = this.viewMenu ? false : true;
+  }
+
+  logout() {
+    sessionStorage.clear();
+    this.username = null;
+    this.router.navigate(['/login'])
   }
 
 }

@@ -5,6 +5,7 @@ import { Teacher } from 'src/app/interfaces/Teacher';
 import { Student } from 'src/app/interfaces/Student';
 import { StudentService } from 'src/app/service/student.service';
 import { CourseService } from 'src/app/service/course.service';
+import { AuthUserService } from 'src/app/service/authuser.service';
 
 @Component({
   selector: 'app-modal-course',
@@ -20,6 +21,7 @@ export class ModalCourseComponent implements OnInit {
     public dialogRef: MatDialogRef<ModalCourseComponent>, @Inject(MAT_DIALOG_DATA) public data: Course,
     private studentService:StudentService,
     private coursesService:CourseService,
+    public auth:AuthUserService
   ) {
     this.course = data;
   }

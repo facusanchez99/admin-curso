@@ -5,12 +5,17 @@
       <i class="fa-solid fa-building-columns"></i>
     </div>
     <div class="navbar-user">
-      <ul class="navbar-nav" *ngIf="username">
+      <!-- <ul class="navbar-nav" *ngIf="username">
         <li>{{username}}</li>
       </ul>
       <ul class="navbar-nav" *ngIf="!username">
         <li [routerLink]="['/login']">Login</li>
-      </ul>
+      </ul> -->
+      <form class="form-inline" *ngIf="username">
+        <span>{{username}}</span>
+        <button class="btn btn-warning" (click)="logout()">Logout</button>
+      </form>
+     
     </div>
   </nav>
   <div [ngClass]="{'background-menu': viewMenu}">

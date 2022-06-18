@@ -17,8 +17,8 @@
                         <th scope="col">Email</th>
                         <th scope="col">Courses</th>
                         <th scope="col">Details</th>
-                        <th scope="col" *ngIf="role">Edit</th>
-                        <th scope="col" *ngIf="role">Delete</th>
+                        <th scope="col" *ngIf="auth.hasRole('ADMIN_ROLE')">Edit</th>
+                        <th scope="col" *ngIf="auth.hasRole('ADMIN_ROLE')">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,13 +31,13 @@
                         <td>{{a.email}}</td>
                         <td> <span *ngFor="let c of a.courses">{{c.course}}</span></td>
                         <td><button class="btn btn-primary" (click)="submitModalStudent(a)">View</button></td>
-                        <td *ngIf="role"><button class="btn btn-warning" (click)="selectEditStudent(a)">Edit</button></td>
-                        <td *ngIf="role"><button class="btn btn-danger" (click)="deleteStudent(a)">Delete</button></td>
+                        <td *ngIf="auth.hasRole('ADMIN_ROLE')"><button class="btn btn-warning" (click)="selectEditStudent(a)">Edit</button></td>
+                        <td *ngIf="auth.hasRole('ADMIN_ROLE')"><button class="btn btn-danger" (click)="deleteStudent(a)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
         </mat-tab>
-        <mat-tab label="Add Students">
+        <mat-tab label="Add Students" *ngIf="auth.hasRole('ADMIN_ROLE')">
             <app-form-student (addStudent)="addNewStudent($event)" [courses]="courses"></app-form-student>
         </mat-tab>
       </mat-tab-group>

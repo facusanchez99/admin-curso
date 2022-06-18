@@ -34,10 +34,7 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('username',this.formUser.get('username').value)
       sessionStorage.setItem('role',this.formUser.get('role').value)
       this.router.navigate(['/home']);
-    } else {
-
     }
-
   }
 
   getErrorMessage(value:any) {

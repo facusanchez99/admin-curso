@@ -18,8 +18,8 @@
                         <th scope="col">Course</th>
                         <th scope="col">Teachers</th>
                         <th scope="col">Details</th>
-                        <th *ngIf="role" scope="col">Edit</th>
-                        <th *ngIf="role" scope="col">Delete</th>
+                        <th *ngIf="auth.hasRole('ADMIN_ROLE')" scope="col">Edit</th>
+                        <th *ngIf="auth.hasRole('ADMIN_ROLE')" scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,16 +28,16 @@
                         <td>{{a.course}}</td>
                         <td><span *ngFor="let t of a.teachers">{{t.name}} {{t.surname}} </span></td>
                         <td><button class="btn btn-primary" (click)="submitModalTable(a)">View</button></td>
-                        <td *ngIf="role"><button class="btn btn-warning" (click)="selectEditCourse(a)">Edit</button>
+                        <td *ngIf="auth.hasRole('ADMIN_ROLE')"><button class="btn btn-warning" (click)="selectEditCourse(a)">Edit</button>
                         </td> <!-- abrir un modal con un formulario y editar esos campos -->
-                        <td *ngIf="role"><button class="btn btn-danger" (click)="deleteCourse(a.id)">Delete</button></td>
+                        <td *ngIf="auth.hasRole('ADMIN_ROLE')"><button class="btn btn-danger" (click)="deleteCourse(a.id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
             <!-- <mat-progress-bar mode="indeterminate" *ngIf="course.length==0"></mat-progress-bar> -->
         </mat-tab>
 
-        <mat-tab label="Add Courses">
+        <mat-tab label="Add Courses" *ngIf="auth.hasRole('ADMIN_ROLE')">
             <app-form-curso (addCourse)="addNewCourse($event)"></app-form-curso>
         </mat-tab>
     </mat-tab-group>
@@ -45,7 +45,7 @@
     <!-- <mat-progress-spinner  mode="indeterminate"></mat-progress-spinner> -->
     <!-- <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar> -->
 
-    <mat-tab-group mat-align-tabs="start" color="accent" *ngIf="courseSelect && role">
+    <mat-tab-group mat-align-tabs="start" color="accent" *ngIf="courseSelect && auth.hasRole('ADMIN_ROLE')">
         <mat-tab label="Edit">
             <table class="table table-hover table-bordered">
                 <thead class="thead-dark ">

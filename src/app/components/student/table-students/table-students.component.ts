@@ -11,6 +11,7 @@ import { ModalCourseComponent } from '../../courses/table-course/modal-course/mo
 import { StudentService } from 'src/app/service/student.service';
 import { CourseService } from 'src/app/service/course.service';
 import { ModalStudentComponent } from './modal-student/modal-student.component';
+import { AuthUserService } from 'src/app/service/authuser.service';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class TableStudentsComponent implements OnInit {
     public dialog: MatDialog,
     public breakpointObserver: BreakpointObserver,
     private studentService: StudentService,
-    private coursesService: CourseService
+    private coursesService: CourseService,
+    public auth:AuthUserService
   ) { }
 
 

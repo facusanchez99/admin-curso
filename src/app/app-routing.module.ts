@@ -5,6 +5,7 @@ import { ProbandoComponent } from './components/probando/probando.component';
 
 
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './components/guards/authguard.guard';
 
 const routes: Routes = [
   {
@@ -20,13 +21,13 @@ const routes: Routes = [
     loadChildren: () => import('./components/courses/course.module').then((m) => m.CourseModule),
   },
   {
-    path: 'students',
+    path: 'students', canActivate:[AuthGuard], data:{role:['ADMIN_ROLE','USER_ROLE']},
     loadChildren: () => import('./components/student/student.module').then((m) => m.StudentModule),
   },
   {
-    path: '',
+    path: '', 
     redirectTo: 'courses',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
 ];
 

@@ -42,7 +42,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Delete</th>
+                        <th scope="col" *ngIf="auth.hasRole('ADMIN_ROLE')">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,7 +52,7 @@
                         <td>{{a.name}}</td>
                         <td>{{a.surname}}</td>
                         <td>{{a.email}}</td>
-                        <td (click)="deleteCourseStudent(course,a)"><button class="btn btn-danger">Delete</button></td>
+                        <td (click)="deleteCourseStudent(course,a)" *ngIf="auth.hasRole('ADMIN_ROLE')"><button class="btn btn-danger">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

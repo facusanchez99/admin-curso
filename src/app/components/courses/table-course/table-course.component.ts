@@ -8,6 +8,7 @@ import { StepperOrientation } from '@angular/cdk/stepper';
 import { map, Observable } from 'rxjs';
 import { ModalCourseComponent } from './modal-course/modal-course.component';
 import { CourseService } from 'src/app/service/course.service';
+import { AuthUserService } from 'src/app/service/authuser.service';
 // import { ModalCourseComponent } from './modal-course/modal-course.component';
 // import { ModalStudentComponent } from './modal-student/modal-student.component';
 
@@ -24,20 +25,21 @@ export class TableCourseComponent implements OnInit {
 
   public course: Course[] = []
   public courseSelect: Course;
-  public role: boolean = false;
+  // public role: boolean = false;
   public load:boolean = false;
 
   constructor(
     // private fb: FormBuilder,
+    public auth:AuthUserService,
     public dialog: MatDialog,
     public breakpointObserver: BreakpointObserver,
     private coursesService: CourseService
   ) {}
 
   ngOnInit(): void {
-    if (sessionStorage.getItem('role')) {
-      this.role = sessionStorage.getItem('role') === 'admin' ? true : false;
-    }
+    // if (sessionStorage.getItem('role')) {
+    //   this.role = sessionStorage.getItem('role') === 'admin' ? true : false;
+    // }
     this.getCourses();
   }
 

@@ -11,6 +11,7 @@ import { ModalStudentComponent } from '../../student/table-students/modal-studen
 import { StudentService } from 'src/app/service/student.service';
 import { CourseService } from 'src/app/service/course.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthUserService } from 'src/app/service/authuser.service';
 
 @Component({
   selector: 'app-tabla-course-id',
@@ -38,7 +39,8 @@ export class TablaCourseIDComponent implements OnInit {
     public breakpointObserver: BreakpointObserver,
     private studentService:StudentService,
     private coursesService:CourseService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    public auth:AuthUserService
   ) {
 
   }
