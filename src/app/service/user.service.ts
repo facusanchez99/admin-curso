@@ -1,34 +1,28 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of, tap } from 'rxjs';
-import { Course } from '../interfaces/Course';
-import { Student } from '../interfaces/Student';
-import { User } from '../interfaces/User';
+import { User } from '../shared/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private userMock: User[] = [];
+  public course: Observable<Array<User>>
 
-  constructor() {
-    this.userMock.push({ id: 1, email: "admin@gmail.com", password: "123"});
-    this.userMock.push({ id: 2, email: "user@gmail.com", password:"123"});
-
+  private url = "https://62aa24153b3143855442d06e.mockapi.io/user";
+  private configurationOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
   }
+
+  constructor(private http:HttpClient) {}
 
 
   getUser(): Observable<User[]> {
-
-    return of(this.userMock);
-
+    return this.http.get<User[]>(`${this.url}`,this.configurationOptions);
   }
-
-  getCoursesID(id: number): Observable<User> {
-
-    return of(this.userMock.find(e => e.id === id));
-  }
-
 
 
 

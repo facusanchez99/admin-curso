@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { delay, Observable, of } from 'rxjs';
-import { User } from './interfaces/User';
+import { User } from './shared/User';
 
 @Component({
   selector: 'app-root',

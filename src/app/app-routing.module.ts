@@ -4,8 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProbandoComponent } from './components/probando/probando.component';
 
 
-import { LoginComponent } from './components/login/login.component';
+// import { LoginComponent } from './components/users/login/login.component';
 import { AuthGuard } from './components/guards/authguard.guard';
+import { LoginComponent } from './components/users/login/login.component';
 
 const routes: Routes = [
   {

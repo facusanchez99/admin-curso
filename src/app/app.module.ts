@@ -8,8 +8,8 @@ import { AppComponent } from './app.component';
 // import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
-import { AdminComponent } from './components/users/admin/admin.component';
-import { LoginComponent } from './components/login/login.component';
+// import { AdminComponent } from './components/users/admin/admin.component';
+// import { LoginComponent } from './components/users/login/login.component';
 import { MenuComponent } from './components/layout/menu/menu.component';
 
 // import { TablaCourseIDComponent } from './components/courses/tabla-course-id/tabla-course-id.component';
@@ -22,7 +22,12 @@ import { TitleDirective } from './utils/title.directive';
 
 import { CourseModule } from './components/courses/course.module';
 import { StudentModule } from './components/student/student.module';
+import { UserModule } from './components/users/user.module';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { environment } from 'src/environments/environment.prod';
 
 @NgModule({
   declarations: [
@@ -30,8 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     // HomeComponent,
     HeaderComponent,
     FooterComponent,
-    AdminComponent,
-    LoginComponent,
+    // AdminComponent,
+    // LoginComponent,
     MenuComponent,
     TitleDirective,
   ],
@@ -45,8 +50,13 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     CommonModule,
     CourseModule,
-    StudentModule
+    StudentModule,
+    UserModule,
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 30, logOnly: environment.production}),
+    EffectsModule.forRoot([])
   ],
+  exports:[],
   providers: [],
   bootstrap: [AppComponent]
 })

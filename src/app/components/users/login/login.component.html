@@ -1,17 +1,24 @@
 <div class="content-form">
     <div>
-        <h1 appTitle [size]="'30px'">Login</h1>
+        <h1>Login</h1>
     </div>
 
     <div>
-        <form [formGroup]="formUser" (ngSubmit)="submit()">
+        <form [formGroup]="formUser">
             
             <div class="form-group">
                 <mat-form-field appearance="fill">
-                    <mat-label>Name</mat-label>
+                    <mat-label>Username</mat-label>
                     <input matInput formControlName="username">
                     <mat-error *ngIf="formUser.invalid">{{getErrorMessage(formUser.controls['username'])}}</mat-error>
                   
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                    <mat-error *ngIf="formUser.invalid">{{getErrorMessage(formUser.controls['password'])}}</mat-error>
                 </mat-form-field>
             </div>
             <div class="form-group">
@@ -24,8 +31,9 @@
                     <mat-error *ngIf="formUser.invalid">{{getErrorMessage(formUser.controls['role'])}}</mat-error>
                 </mat-form-field>
             </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div>
+                <button (click)="onSubmit()" class="btn btn-primary">Submit</button>
+            </div>
         </form>
     </div>
 
