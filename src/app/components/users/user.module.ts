@@ -17,7 +17,7 @@ import { USER_PROVIDED_EFFECTS } from '@ngrx/effects';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forFeature(fromUser.featureLoginFeatureKey,fromUser.reducer),
+    StoreModule.forFeature(fromUser.featureLoginFeatureKey,fromUser.userReducer),
   ],
   exports:[
     LoginComponent

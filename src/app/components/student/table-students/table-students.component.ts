@@ -21,7 +21,6 @@ import { AuthUserService } from 'src/app/service/authuser.service';
 })
 export class TableStudentsComponent implements OnInit {
 
-  // public detalle: Course;
   public student: Student[];
   public courses: Course[];
   public studentSelect: Student = null;
@@ -31,7 +30,6 @@ export class TableStudentsComponent implements OnInit {
 
 
   constructor(
-    // private fb: FormBuilder,
     public dialog: MatDialog,
     public breakpointObserver: BreakpointObserver,
     private studentService: StudentService,
@@ -98,7 +96,6 @@ export class TableStudentsComponent implements OnInit {
   }
 
   submitModalStudent(student: Student) {
-    //const result = this.student.find(c => c.id === id);
 
     this.dialog.open(ModalStudentComponent, {
 

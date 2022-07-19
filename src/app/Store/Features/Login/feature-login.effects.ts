@@ -14,8 +14,8 @@ export class FeatureLoginEffects {
       ofType('[User Page] Load user'),
       mergeMap(() => this.usersService.getUser()
         .pipe(
-          map(user => ({ type: '[User Page] User Loaded Success', payload: user })),
-          catchError(() => of({ type: '[User Page] User Loaded Error' }))
+          map(user => FeatureLoginActions.loadFeatureGetUser({user})),
+          catchError(() => of(FeatureLoginActions.loadFeatureLoginsFail))
         )
       )
     )

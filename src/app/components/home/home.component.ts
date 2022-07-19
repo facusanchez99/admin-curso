@@ -21,20 +21,13 @@ export class HomeComponent implements OnInit {
     private studentService: StudentService,
     private coursesService: CourseService
   ) { 
-    // this.courses = this.coursesService.getCourses();
   
   }
 
   ngOnInit(): void {
-    // this.coursesService.getCourses().subscribe(course =>{
-    //   this.courses = course;
-    //   console.log(this.courses)
-    // })
     this.coursesService.getCoursesID(1).subscribe(course =>{
       this.course = course;
-      console.log(this.course)
     })
-    //this.students = this.studentService.getStudents();
   }
 
   addStudent(stuent:Student){
@@ -42,8 +35,6 @@ export class HomeComponent implements OnInit {
   }
   
   addCourse(course:Course){
-    console.log(course);
     this.courses.push(course);
-    console.log(this.courses)
   }
 }

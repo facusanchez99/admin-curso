@@ -8,19 +8,20 @@ export class AuthUserService {
   constructor() { }
 
   isAuthenticated():boolean{
-    if(sessionStorage.getItem('role')){
+    const user = JSON.parse(sessionStorage.getItem('session') || 'false');
+    if(user){
       return true;
     }
     return false;
   }
 
-  hasRole(role):boolean{
-    // const role = sessionStorage.getItem('role');
-  
-    if(sessionStorage.getItem('role') && sessionStorage.getItem('role').includes(role)){
+  hasRole(role:string):boolean{
+    const {user} = JSON.parse(sessionStorage.getItem('session') || 'false');
+
+    if(user && user.role === role){
       return true;
     }
-    
+  
     return false;
   }
 }

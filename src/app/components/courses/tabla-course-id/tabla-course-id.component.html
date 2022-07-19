@@ -19,7 +19,7 @@
                         <th scope="col">Surname</th>
                         <th scope="col">Email</th>
                         <th scope="col" *ngIf="auth.isAuthenticated()">Details</th>
-                        <th scope="col" *ngIf="auth.hasRole('ADMIN_ROLE')">Delete</th>
+                        <th scope="col" *ngIf="auth.hasRole('ROLE_ADMIN')">Delete</th>
                     </tr>
                 </thead>
                 <tbody *ngIf="student">
@@ -30,12 +30,12 @@
                         <td>{{a.surname}}</td>
                         <td>{{a.email}}</td>
                         <td *ngIf="auth.isAuthenticated()"><button class="btn btn-primary" (click)="submitModalStudent(a.id)">View</button></td>
-                        <td *ngIf="auth.hasRole('ADMIN_ROLE')"><button class="btn btn-danger" (click)="deleteCourseStudent(course,a)">Delete</button></td>
+                        <td *ngIf="auth.hasRole('ROLE_ADMIN')"><button class="btn btn-danger" (click)="deleteCourseStudent(course,a)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
         </mat-tab>
-        <mat-tab label="Add Students" *ngIf="auth.hasRole('ADMIN_ROLE')">
+        <mat-tab label="Add Students" *ngIf="auth.hasRole('ROLE_ADMIN')">
             <app-form-student (addStudent)="addNewStudent($event)" [courses]="courses"></app-form-student>
         </mat-tab>
       </mat-tab-group>

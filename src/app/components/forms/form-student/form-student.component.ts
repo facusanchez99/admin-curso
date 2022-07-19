@@ -23,7 +23,6 @@ export class FormStudentComponent implements OnInit {
   public error: boolean = false;
   public load:boolean = false;
 
-  // public isArray = false;
 
   public student: Student[];
 
@@ -58,7 +57,6 @@ export class FormStudentComponent implements OnInit {
           photo: this.valueForm.photo,
           courses: this.valueForm.courses
         }
-        console.log(studentEdit)
         this.editStudent.next(studentEdit);
       } else {
         let studentNew: Student;

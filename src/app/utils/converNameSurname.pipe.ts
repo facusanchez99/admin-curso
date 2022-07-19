@@ -8,7 +8,6 @@ export class ConverNameSurnamePipe implements PipeTransform {
   transform(value: string, ...args: unknown[]): unknown {
     const array = value.split(" ")
     return array.length >1 ? `${array[0]} ${array[1]}` :  `${array[0]}`
-    //return `Pipe ${value[0]} ${value[1]}`;
   }
 
 }

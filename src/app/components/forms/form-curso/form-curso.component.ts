@@ -19,7 +19,6 @@ export class FormCursoComponent implements OnInit {
 
   public formCourse: FormGroup;
   public error: boolean = false;
-  // public isArray = false;
   public course: Course[];
   public teachers: Teacher[]
   public load:boolean = false;
@@ -37,12 +36,11 @@ export class FormCursoComponent implements OnInit {
       this.load = true;
     }))
     
-    // Array.isArray(this.teachers) ? this.isArray = true : this.isArray = false;
+   
 
     this.formCourse = this.formBuilder.group({
       course: [this.valueForm ? this.valueForm.course : null, [Validators.required, Validators.minLength(2), Validators.maxLength(120)]],
       teacher: [null, [Validators.required]],
-      // students:[null, [Validators.required]],
     })
 
 
@@ -81,13 +79,11 @@ export class FormCursoComponent implements OnInit {
 
       } else {
         let courseNew: Course;
-        //el ID deberia generarse por base de datos o a traves de una libreria.
-        // let id = this.course[this.course.length - 1] ? this.course[this.course.length - 1].id + 1 : 1;
+
 
         this.teacherService.getTeacherID(parseInt(this.formCourse.value.teacher)).subscribe(teacher => {
           this.formCourse.controls['teacher'].setValue(teacher);
           courseNew = {
-            // id,
             course: this.formCourse.get('course').value,
             teachers: [{
               id: teacher.id,

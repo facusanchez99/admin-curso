@@ -4,28 +4,31 @@
       <button class="btn-menu" (click)="openMenu()"><i class="fas fa-bars"></i></button>
       <i class="fa-solid fa-building-columns"></i>
     </div>
+    <a class="navbar-brand" *ngIf="userActive?.username">Hi! {{userActive.username}}</a>
     <div class="navbar-user">
+
       <!-- <ul class="navbar-nav" *ngIf="username">
         <li>{{username}}</li>
       </ul>
       <ul class="navbar-nav" *ngIf="!username">
         <li [routerLink]="['/login']">Login</li>
       </ul> -->
-      <form class="form-inline" *ngIf="username">
-        <span>{{username}}</span>
-        <button class="btn btn-warning" (click)="logout()">Logout</button>
+      <form class="form-inline">
+        <div *ngIf="userActive?.username">
+          <button class="btn btn-warning" (click)="logout()">Logout</button>
+        </div>
       </form>
-     
+      <form class="form-inline" *ngIf="!userActive?.username">
+        <button class="btn btn-success" [routerLink]="['/login']">Sing Up</button>
+      </form>
     </div>
   </nav>
   <div [ngClass]="{'background-menu': viewMenu}">
     <div class="navbar-menu" [ngClass]="{'navbar-menu-show': viewMenu}">
       <nav>
         <ul class="menu-items-show">
-          <li [routerLink]="['/home']" (click)="openMenu()"><i class="fas fa-house-user"></i> Home</li>
           <li [routerLink]="['/students']" (click)="openMenu()"><i class="fas fa-graduation-cap"></i> Students</li>
           <li [routerLink]="['/courses']" (click)="openMenu()"><i class="fas fa-school"></i> Courses</li>
-          <li [routerLink]="['/home']" (click)="openMenu()"><i class="fas fa-address-book"></i> Contact</li>
         </ul>
       </nav>
     </div>

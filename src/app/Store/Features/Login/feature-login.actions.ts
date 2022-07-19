@@ -3,15 +3,25 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/shared/User';
 
 export const loadFeatureLogins = createAction(
-  '[FeatureLogin] Load FeatureLogins'
+  '[FeatureLogin] Load User'
 );
 
-export const loadFeatureLoginsSuccess = createAction(
-  '[FeatureLogin] Load FeatureLogins Success',
+export const loadFeatureGetUser = createAction(
+  '[FeatureLogin] Load GET Users',
   props<{ user: User[] }>()
 );
 
-export const loadFeatureLoginsFailure = createAction(
-  '[FeatureLogin] Load FeatureLogins Failure',
+export const loadFeatureLoginsSuccess = createAction(
+  '[FeatureLogin] Load User Success',
+  props<{ user: User }>()
+);
+
+export const loadFeatureLoginsLogout = createAction(
+  '[FeatureLogin] Logout Success'
+);
+
+
+export const loadFeatureLoginsFail = createAction(
+  '[FeatureLogin] Load Fail',
   props<{ error: any }>()
 );

@@ -3,9 +3,9 @@ import { Student } from 'src/app/interfaces/Student';
 import { Course } from 'src/app/interfaces/Course';
 import { MatDialog } from '@angular/material/dialog';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { StepperOrientation } from '@angular/cdk/stepper';
-import { FormBuilder, Validators } from '@angular/forms';
-import { map, Observable } from 'rxjs';
+
+import { FormBuilder } from '@angular/forms';
+
 import { ModalCourseComponent } from '../table-course/modal-course/modal-course.component';
 import { ModalStudentComponent } from '../../student/table-students/modal-student/modal-student.component';
 import { StudentService } from 'src/app/service/student.service';
@@ -20,8 +20,7 @@ import { AuthUserService } from 'src/app/service/authuser.service';
 })
 
 export class TablaCourseIDComponent implements OnInit {
-  // @Input() student: Student[];
-  // @Input() course: Course[];
+
   @Input() titulo: string;
 
   @Output() addCourse = new EventEmitter<Course>();
@@ -47,9 +46,6 @@ export class TablaCourseIDComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.studentService.getStudents().subscribe(student=>{
-    //   this.student = student;
-    // })
     let id :number = 0;
     this.route.params.subscribe(params=>{
       id = parseInt(params['id']);
@@ -65,14 +61,13 @@ export class TablaCourseIDComponent implements OnInit {
   }
   
   ngOnDestroy() {
-    // this.route.unsubscribe();
+
   }
 
   async addNewStudent(student:Student){
     
     const studentPost = await this.studentService.postStudents(student)
     this.student.push(studentPost);
-    console.log(studentPost)
     this.coursesService.updateCourseStudent(studentPost,student.courses.pop()).subscribe(data=>{
         this.course = data;
         this.student = data.students

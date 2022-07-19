@@ -3,7 +3,6 @@ import { catchError, delay, from, map, Observable, of, tap, throwError } from 'r
 import { Course } from '../interfaces/Course';
 import { Student } from '../interfaces/Student';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { async } from '@angular/core/testing';
 @Injectable({
   providedIn: 'root'
 })
@@ -66,8 +65,7 @@ export class CourseService {
       course.students.splice(index,1);
     }
  
-    return this.http.put<Course>(`${this.url}/${course.id}`,course,this.configurationOptions);
-    // console.log(this.coursesMock);
+    return this.http.put<Course>(`${this.url}/${course.id}`,course,this.configurationOptions);;
   }
 
 

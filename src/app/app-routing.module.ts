@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ProbandoComponent } from './components/probando/probando.component';
-
-
-// import { LoginComponent } from './components/users/login/login.component';
 import { AuthGuard } from './components/guards/authguard.guard';
 import { LoginComponent } from './components/users/login/login.component';
 
@@ -22,7 +18,7 @@ const routes: Routes = [
     loadChildren: () => import('./components/courses/course.module').then((m) => m.CourseModule),
   },
   {
-    path: 'students', canActivate:[AuthGuard], data:{role:['ADMIN_ROLE','USER_ROLE']},
+    path: 'students', canActivate:[AuthGuard], data:{role:['ROLE_ADMIN','ROLE_USER']},
     loadChildren: () => import('./components/student/student.module').then((m) => m.StudentModule),
   },
   {

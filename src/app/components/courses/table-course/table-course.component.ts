@@ -1,16 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-// import { Student } from 'src/app/interfaces/Student';
+
 import { Course } from 'src/app/interfaces/Course';
 import { MatDialog } from '@angular/material/dialog';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
-// import { FormBuilder, Validators } from '@angular/forms';
+
 import { map, Observable } from 'rxjs';
 import { ModalCourseComponent } from './modal-course/modal-course.component';
 import { CourseService } from 'src/app/service/course.service';
 import { AuthUserService } from 'src/app/service/authuser.service';
-// import { ModalCourseComponent } from './modal-course/modal-course.component';
-// import { ModalStudentComponent } from './modal-student/modal-student.component';
+
 
 @Component({
   selector: 'app-table-course',
@@ -25,11 +24,11 @@ export class TableCourseComponent implements OnInit {
 
   public course: Course[] = []
   public courseSelect: Course;
-  // public role: boolean = false;
+
   public load:boolean = false;
 
   constructor(
-    // private fb: FormBuilder,
+
     public auth:AuthUserService,
     public dialog: MatDialog,
     public breakpointObserver: BreakpointObserver,
@@ -37,9 +36,7 @@ export class TableCourseComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // if (sessionStorage.getItem('role')) {
-    //   this.role = sessionStorage.getItem('role') === 'admin' ? true : false;
-    // }
+
     this.getCourses();
   }
 
@@ -79,7 +76,6 @@ export class TableCourseComponent implements OnInit {
     this.courseSelect = null;
   }
   submitModalTable(course: Course): void {
-    // const result = this.course.find(c => c.id === id);
     this.dialog.open(ModalCourseComponent, {
       data: {
         id: course.id,

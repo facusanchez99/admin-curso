@@ -7,13 +7,4 @@ export interface Course {
     teachers: Teacher[]
     students: Student[];
 
-    // constructor(id: number,course: string,teachers: Teacher[],students: Student[]) {
-    //     this.id = id;
-    //     this.course = course;
-    //     this.teachers = teachers;
-    //     this.students = students;
-    // }
-
-
-
 }

@@ -27,7 +27,6 @@ export class ModalCourseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.course)
     if(this.course?.teachers?.length>0){
       this.teacher = this.course.teachers;
     }
@@ -38,19 +37,12 @@ export class ModalCourseComponent implements OnInit {
   }
 
   edit(teacher:Teacher){
-    console.log(teacher);
-    //this.course.teachers.pop(t => t.id === teacher.id);
+
   }
 
-  // deleteTeacher(teacher:Teacher){
-  //   const index = this.course.teachers.indexOf(teacher)
-  //   this.course.teachers.splice(index,1);
-  // }
 
 
   deleteCourseStudent(course:Course,student:Student){
-    console.log(course)
-    console.log(student);
     this.coursesService.deleteStudentCourse(student,course);
     this.studentService.deleteStudentCourse(student,course);
   }

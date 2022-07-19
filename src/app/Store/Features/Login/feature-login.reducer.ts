@@ -6,20 +6,23 @@ import * as FeatureLoginActions from './feature-login.actions';
 export const featureLoginFeatureKey = 'featureLogin';
 
 export interface State {
-  user:User[]
+  user: User
 }
 
 export const initialState: State = {
-  user:[]
+  user: null
 };
 
-export const reducer = createReducer(
+export const userReducer = createReducer(
   initialState,
-
-  on(FeatureLoginActions.loadFeatureLogins, state => state),
-  on(FeatureLoginActions.loadFeatureLoginsSuccess, (state, {user}) => {
-    return {...state,user}
+  on(FeatureLoginActions.loadFeatureLogins, (state) => {
+    return { ...state, loading: true }
   }),
-  on(FeatureLoginActions.loadFeatureLoginsFailure, (state, action) => state),
+  on(FeatureLoginActions.loadFeatureLoginsSuccess, (state, { user }) => {
+    return { ...state, user, loading:false }
+  }),
+  on(FeatureLoginActions.loadFeatureLoginsLogout,(state)=>{
+    return {...state,user:null,loading:false}
+  })
 
 );

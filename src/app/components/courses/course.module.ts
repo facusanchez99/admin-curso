@@ -4,8 +4,6 @@ import { CommonModule } from '@angular/common';
 import { CourseRoutingModule } from './course-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-// import { FormCursoComponent } from '../forms/form-curso/form-curso.component';
-
 import { TableCourseComponent } from './table-course/table-course.component';
 import { TablaCourseIDComponent } from './tabla-course-id/tabla-course-id.component';
 import { MaterialModule } from 'src/app/module/material.module';
@@ -22,12 +20,8 @@ import { MatDialog } from '@angular/material/dialog';
     ModalCourseComponent,
     TableCourseComponent,
     TablaCourseIDComponent,
-    
-    // FormCursoComponent
   ],
   imports: [
-    // StudentModule,
-    // FormStudentComponent,
     FormModule,
     MaterialModule,
     CourseRoutingModule,

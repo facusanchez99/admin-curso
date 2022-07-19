@@ -1,5 +1,13 @@
-# Notas
-//eliminar alumno de un curso
+
+# Usuarios para iniciar Sesion
+username: admin,
+password: admin,
+role: ROLE_ADMIN,
+
+username: user,
+password: user,
+role: ROLE_USER,
+  
 
 # AdminCurso
 

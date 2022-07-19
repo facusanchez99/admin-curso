@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Actions, ofType } from '@ngrx/effects';
 
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable} from 'rxjs';
 import { UserService } from 'src/app/service/user.service';
 import { User } from 'src/app/shared/User';
-import { loadFeatureLoginsSuccess } from 'src/app/Store/Features/Login/feature-login.actions';
+import { loadFeatureLogins, loadFeatureLoginsSuccess } from 'src/app/Store/Features/Login/feature-login.actions';
 import { selectUser } from 'src/app/Store/Features/Login/feature-login.selectors';
 
 @Component({
@@ -19,12 +19,10 @@ export class LoginComponent implements OnInit {
 
   users$: Observable<User[]> = this.store.select(state => state.user);
 
-
-
+  private userActive:User;
   formUser: FormGroup;
   error: boolean = false;
-  private users: User[];
-
+  public load:boolean = false
 
   constructor(
     private actions$: Actions,
@@ -36,42 +34,28 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getUser().subscribe(user => {
-      this.users = user;
-    });
-
-    this.store.select(selectUser).subscribe(val =>console.log(val))
-
     this.formUser = this.formBuilder.group({
       username: [null, [Validators.required, Validators.maxLength(60), Validators.minLength(2)]],
       password: [null, [Validators.required, Validators.maxLength(60), Validators.minLength(2)]],
-      role: [null, [Validators.required]]
+      role: [null, []]
     })
-
-    // this.store.select(selectLog)
-    this.store.select(selectUser).subscribe(
-      (val) => {
-        console.log(val)
-      }
-    )
-  
-    this.store.dispatch({ type: '[User Page] Load user' });
-    // this.store.dispatch(loadFeatureLoginsSuccess())
-    // console.log(users$)
 
   }
 
   onSubmit() {
+    this.load = true;
+    this.store.dispatch(loadFeatureLogins());
     if (!this.formUser.invalid) {
-      sessionStorage.setItem('username', this.formUser.get('username').value)
-      sessionStorage.setItem('role', this.formUser.get('role').value)
-      const user: User = {
-        id: 0,
-        username: '',
-        password: '',
-        role: ''
-      }
-      this.router.navigate(['/home']);
+      this.userService.getUser();
+      this.userService.getUser().subscribe(user =>{
+        const userLoad = user.find(u => u.username === this.formUser.get('username').value)
+        if(userLoad){
+          this.userActive = userLoad;
+          this.store.dispatch(loadFeatureLoginsSuccess({user:this.userActive}));
+          this.userService.sessionActive(true,userLoad);
+          this.router.navigate(['/home']);
+        }
+      })
     }
   }
 
